@@ -17,7 +17,6 @@ class LoginPage extends ConsumerWidget {
   final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    print('REBUILD LOGIN PAGE');
     final loginStatus = ref.watch(
       loginNotifierProvider.select((state) => state.loginStatus),
     );
