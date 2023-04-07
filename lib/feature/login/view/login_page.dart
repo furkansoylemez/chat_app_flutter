@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:birsu/core/extension/context_extensions.dart';
 import 'package:birsu/core/extension/widget_extensions.dart';
 import 'package:birsu/widgets/custom_spacer.dart';
 import 'package:flutter/material.dart';
@@ -20,16 +21,17 @@ class LoginPage extends ConsumerWidget {
           children: [
             TextFormField(
               validator: MultiValidator([
-                RequiredValidator(errorText: 'username is required'),
+                RequiredValidator(errorText: context.loc.requiredError),
+                EmailValidator(errorText: context.loc.invalidEmailError)
               ]),
             ),
             CustomSpacer.column(16.h),
             TextFormField(
               validator: MultiValidator([
-                RequiredValidator(errorText: 'password is required'),
+                RequiredValidator(errorText: context.loc.requiredError),
                 MinLengthValidator(
-                  6,
-                  errorText: 'password must be at least 6 digits long',
+                  8,
+                  errorText: context.loc.passwordMinLengthError,
                 ),
               ]),
             ),
@@ -42,7 +44,7 @@ class LoginPage extends ConsumerWidget {
                     print('valid');
                   }
                 },
-                child: const Text('Login'),
+                child: Text(context.loc.login),
               ),
             ),
           ],
