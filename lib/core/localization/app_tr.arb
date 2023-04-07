@@ -2,11 +2,21 @@
   "@@locale": "tr",
   "email": "E-posta",
   "emailAlreadyInUseError": "Bu e-posta adresine kayıtlı bir hesap zaten var.",
-  "invalidEmailError": "Lütfen doğru bir e-posta adresi giriniz.",
+  "errorTitle": "Hata",
+  "invalidEmailError": "Lütfen doğru bir e-posta adresi giriniz",
   "login": "Giriş Yap",
   "password": "Şifre",
-  "passwordMinLengthError": "Şifre en az 8 karakterden oluşmalıdır.",
-  "requiredError": "Bu alan boş bırakılamaz.",
+  "passwordMinLengthError": "Şifre en az {passwordMinLength} karakterden oluşmalıdır",
+  "@passwordMinLengthError": {
+    "placeholders": {
+      "passwordMinLength": {
+        "type": "int"
+      }
+    }
+  },
+  "passwordsDoNotMatchError": "Şifreler eşleşmiyor",
+  "register": "Kayıt Ol",
+  "requiredError": "Bu alan boş bırakılamaz",
   "userDisabledError": "Kullanıcı engellendi.",
   "userNotFoundError": "Kullanıcı bulunamadı.",
   "weakPasswordError": "Girdiğiniz şifre çok zayıf.",
