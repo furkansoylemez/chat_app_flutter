@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:birsu/feature/home/view/home_page.dart';
 import 'package:birsu/feature/login/view/login_page.dart';
+import 'package:birsu/feature/register/view/register_page.dart';
 import 'package:birsu/feature/splash/view/splash_page.dart';
 import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -21,6 +22,10 @@ class AppRouter extends _$AppRouter {
     AutoRoute(
       page: SplashRoute.page,
       path: '/',
+    ),
+    AutoRoute(
+      page: RegisterRoute.page,
+      path: '/register',
     ),
     AutoRoute(
       page: LoginRoute.page,
