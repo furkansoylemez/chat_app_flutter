@@ -6,6 +6,12 @@
   "counterPageDialogButtonText": "Diyalog butonu",
   "counterPageNavigationButtonText": "Navigasyon butonu",
   "dummyPageCenterText": "Şu an ikinci sayfadasınız.",
+  "emailAlreadyInUseError": "Bu e-posta adresine kayıtlı bir hesap zaten var.",
   "errorIncrementButtonText": "Hatalı artırma",
-  "errorMessage":"Hata mesajı"
+  "errorMessage": "Hata mesajı",
+  "invalidEmailError": "Lütfen doğru bir e-posta adresi giriniz.",
+  "login": "Giriş Yap",
+  "passwordMinLengthError": "Şifre en az 8 karakterden oluşmalıdır.",
+  "requiredError": "Bu alan boş bırakılamaz.",
+  "weakPasswordError": "Girdiğiniz şifre çok zayıf."
 }
