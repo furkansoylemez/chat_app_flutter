@@ -3,7 +3,7 @@ import 'package:birsu/core/app_constants.dart';
 import 'package:birsu/core/app_router/app_router.dart';
 import 'package:birsu/core/extension/widget_extensions.dart';
 import 'package:birsu/core/resource/resources.dart';
-import 'package:birsu/provider/app_user_provider.dart';
+import 'package:birsu/provider/app_user.dart';
 import 'package:birsu/widgets/custom_spacer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
