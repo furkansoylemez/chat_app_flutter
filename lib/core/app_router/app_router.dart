@@ -3,8 +3,16 @@ import 'package:birsu/feature/home/view/home_page.dart';
 import 'package:birsu/feature/login/view/login_page.dart';
 import 'package:birsu/feature/splash/view/splash_page.dart';
 import 'package:flutter/material.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'app_router.gr.dart';
+
+part 'app_router.g.dart';
+
+@riverpod
+AppRouter appRouter(AppRouterRef ref) {
+  return AppRouter();
+}
 
 @AutoRouterConfig(replaceInRouteName: 'Page,Route')
 class AppRouter extends _$AppRouter {
