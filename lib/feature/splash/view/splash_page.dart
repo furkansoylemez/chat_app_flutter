@@ -1,7 +1,9 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:birsu/core/app_constants.dart';
 import 'package:birsu/core/app_router/app_router.dart';
 import 'package:birsu/core/extension/widget_extensions.dart';
 import 'package:birsu/core/resource/resources.dart';
+import 'package:birsu/provider/app_user_provider.dart';
 import 'package:birsu/widgets/custom_spacer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -20,13 +22,26 @@ class _SplashPageState extends ConsumerState<SplashPage> {
   @override
   void initState() {
     super.initState();
-    _replaceWithLoginPage();
+    _checkAppUser();
+  }
+
+  void _checkAppUser() {
+    Future.delayed(AppConstants.splashDuration, () {
+      final appUser = ref.watch(appUserProvider);
+      if (appUser != null) {
+        _replaceWithHomePage();
+      } else {
+        _replaceWithLoginPage();
+      }
+    });
   }
 
   void _replaceWithLoginPage() {
-    Future.delayed(const Duration(seconds: 3), () {
-      context.router.replace(const LoginRoute());
-    });
+    context.router.replace(LoginRoute());
+  }
+
+  void _replaceWithHomePage() {
+    context.router.replace(const HomeRoute());
   }
 
   @override
