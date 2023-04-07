@@ -63,7 +63,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '686511909495',
     projectId: 'netrunner-birsu',
     storageBucket: 'netrunner-birsu.appspot.com',
-    iosClientId: '686511909495-hf0o25emgima779kd4fq3r31dst7pg6k.apps.googleusercontent.com',
+    iosClientId:
+        '686511909495-hf0o25emgima779kd4fq3r31dst7pg6k.apps.googleusercontent.com',
     iosBundleId: 'com.netrunner.birsu',
   );
 }
