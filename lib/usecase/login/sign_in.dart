@@ -3,10 +3,10 @@ import 'package:birsu/provider/localizations_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'create_user.g.dart';
+part 'sign_in.g.dart';
 
 @riverpod
-class CreateUser extends _$CreateUser {
+class SignIn extends _$SignIn {
   @override
   void build() {}
 
@@ -14,7 +14,7 @@ class CreateUser extends _$CreateUser {
     final firebaseAuth = ref.read(firebaseAuthProvider);
     final loc = ref.read(localizationsProvider);
     return firebaseAuth
-        .createUserWithEmailAndPassword(
+        .signInWithEmailAndPassword(
       email: emailAddress,
       password: password,
     )
@@ -22,14 +22,17 @@ class CreateUser extends _$CreateUser {
       String errorMessage;
       if (error is FirebaseAuthException) {
         switch (error.code) {
-          case 'weak-password':
-            errorMessage = loc.weakPasswordError;
-            break;
-          case 'email-already-in-use':
-            errorMessage = loc.emailAlreadyInUseError;
-            break;
           case 'invalid-email':
             errorMessage = loc.invalidEmailError;
+            break;
+          case 'user-disabled':
+            errorMessage = loc.userDisabledError;
+            break;
+          case 'user-not-found':
+            errorMessage = loc.userNotFoundError;
+            break;
+          case 'wrong-password':
+            errorMessage = loc.wrongPasswordError;
             break;
           default:
             errorMessage = error.toString();
