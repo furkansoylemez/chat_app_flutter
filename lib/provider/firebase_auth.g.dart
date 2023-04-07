@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'firebase_auth_provider.dart';
+part of 'firebase_auth.dart';
 
 // **************************************************************************
 // RiverpodGenerator
