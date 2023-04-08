@@ -14,6 +14,7 @@
   "errorTitle": "Hata",
   "invalidEmailError": "Lütfen doğru bir e-posta adresi giriniz",
   "login": "Giriş Yap",
+  "logout": "Çıkış Yap",
   "password": "Şifre",
   "passwordAgain": "Şifre Tekrar",
   "passwordMinLengthError": "Şifre en az {passwordMinLength} karakterden oluşmalıdır",
@@ -25,8 +26,10 @@
     }
   },
   "passwordsDoNotMatchError": "Şifreler eşleşmiyor",
+  "profile": "Profil",
   "register": "Kayıt Ol",
   "requiredError": "Bu alan boş bırakılamaz",
+  "tryAgain": "Tekrar Dene",
   "userDisabledError": "Kullanıcı engellendi.",
   "userNotFoundError": "Kullanıcı bulunamadı.",
   "weakPasswordError": "Girdiğiniz şifre çok zayıf.",
