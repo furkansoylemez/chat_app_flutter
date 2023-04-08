@@ -52,6 +52,7 @@ class _SplashPageState extends ConsumerState<SplashPage> {
         children: [
           Lottie.asset(
             AppLotties.ltCouple,
+            frameRate: FrameRate.max,
             repeat: true,
             animate: true,
           ),
