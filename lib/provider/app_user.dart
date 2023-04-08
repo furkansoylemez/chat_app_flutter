@@ -1,31 +1,16 @@
-import 'package:birsu/provider/firebase_auth.dart';
+import 'package:birsu/provider/user_changes.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'app_user.g.dart';
 
 @riverpod
-class AppUser extends _$AppUser {
-  @override
-  User? build() {
-    _listenUserStream();
-    return _fetchUser();
-  }
-
-  User? _fetchUser() {
-    final firebaseAuth = ref.watch(firebaseAuthProvider);
-    final user = firebaseAuth.currentUser;
+User? appUser(AppUserRef ref) {
+  final userChanges = ref.watch(userChangesProvider);
+  final user = userChanges.asData?.value;
+  if (user != null) {
     return user;
-  }
-
-  void _listenUserStream() {
-    final firebaseAuth = ref.watch(firebaseAuthProvider);
-    firebaseAuth.authStateChanges().listen((user) {
-      if (user != null) {
-        state = user;
-      } else {
-        state = null;
-      }
-    });
+  } else {
+    return null;
   }
 }
