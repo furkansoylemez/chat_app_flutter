@@ -16,10 +16,13 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$RegisterState {
+  String get displayName => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
   String get password => throw _privateConstructorUsedError;
   String get confirmPassword => throw _privateConstructorUsedError;
   AsyncValue<UserCredential?> get registerStatus =>
+      throw _privateConstructorUsedError;
+  AsyncValue<bool?> get updateDisplayNameStatus =>
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -34,10 +37,12 @@ abstract class $RegisterStateCopyWith<$Res> {
       _$RegisterStateCopyWithImpl<$Res, RegisterState>;
   @useResult
   $Res call(
-      {String email,
+      {String displayName,
+      String email,
       String password,
       String confirmPassword,
-      AsyncValue<UserCredential?> registerStatus});
+      AsyncValue<UserCredential?> registerStatus,
+      AsyncValue<bool?> updateDisplayNameStatus});
 }
 
 /// @nodoc
@@ -53,12 +58,18 @@ class _$RegisterStateCopyWithImpl<$Res, $Val extends RegisterState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? displayName = null,
     Object? email = null,
     Object? password = null,
     Object? confirmPassword = null,
     Object? registerStatus = null,
+    Object? updateDisplayNameStatus = null,
   }) {
     return _then(_value.copyWith(
+      displayName: null == displayName
+          ? _value.displayName
+          : displayName // ignore: cast_nullable_to_non_nullable
+              as String,
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
@@ -75,6 +86,10 @@ class _$RegisterStateCopyWithImpl<$Res, $Val extends RegisterState>
           ? _value.registerStatus
           : registerStatus // ignore: cast_nullable_to_non_nullable
               as AsyncValue<UserCredential?>,
+      updateDisplayNameStatus: null == updateDisplayNameStatus
+          ? _value.updateDisplayNameStatus
+          : updateDisplayNameStatus // ignore: cast_nullable_to_non_nullable
+              as AsyncValue<bool?>,
     ) as $Val);
   }
 }
@@ -88,10 +103,12 @@ abstract class _$$_RegisterStateCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String email,
+      {String displayName,
+      String email,
       String password,
       String confirmPassword,
-      AsyncValue<UserCredential?> registerStatus});
+      AsyncValue<UserCredential?> registerStatus,
+      AsyncValue<bool?> updateDisplayNameStatus});
 }
 
 /// @nodoc
@@ -105,12 +122,18 @@ class __$$_RegisterStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? displayName = null,
     Object? email = null,
     Object? password = null,
     Object? confirmPassword = null,
     Object? registerStatus = null,
+    Object? updateDisplayNameStatus = null,
   }) {
     return _then(_$_RegisterState(
+      displayName: null == displayName
+          ? _value.displayName
+          : displayName // ignore: cast_nullable_to_non_nullable
+              as String,
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
@@ -127,6 +150,10 @@ class __$$_RegisterStateCopyWithImpl<$Res>
           ? _value.registerStatus
           : registerStatus // ignore: cast_nullable_to_non_nullable
               as AsyncValue<UserCredential?>,
+      updateDisplayNameStatus: null == updateDisplayNameStatus
+          ? _value.updateDisplayNameStatus
+          : updateDisplayNameStatus // ignore: cast_nullable_to_non_nullable
+              as AsyncValue<bool?>,
     ));
   }
 }
@@ -135,11 +162,15 @@ class __$$_RegisterStateCopyWithImpl<$Res>
 
 class _$_RegisterState implements _RegisterState {
   const _$_RegisterState(
-      {required this.email,
+      {required this.displayName,
+      required this.email,
       required this.password,
       required this.confirmPassword,
-      required this.registerStatus});
+      required this.registerStatus,
+      required this.updateDisplayNameStatus});
 
+  @override
+  final String displayName;
   @override
   final String email;
   @override
@@ -148,10 +179,12 @@ class _$_RegisterState implements _RegisterState {
   final String confirmPassword;
   @override
   final AsyncValue<UserCredential?> registerStatus;
+  @override
+  final AsyncValue<bool?> updateDisplayNameStatus;
 
   @override
   String toString() {
-    return 'RegisterState(email: $email, password: $password, confirmPassword: $confirmPassword, registerStatus: $registerStatus)';
+    return 'RegisterState(displayName: $displayName, email: $email, password: $password, confirmPassword: $confirmPassword, registerStatus: $registerStatus, updateDisplayNameStatus: $updateDisplayNameStatus)';
   }
 
   @override
@@ -159,18 +192,23 @@ class _$_RegisterState implements _RegisterState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_RegisterState &&
+            (identical(other.displayName, displayName) ||
+                other.displayName == displayName) &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.password, password) ||
                 other.password == password) &&
             (identical(other.confirmPassword, confirmPassword) ||
                 other.confirmPassword == confirmPassword) &&
             (identical(other.registerStatus, registerStatus) ||
-                other.registerStatus == registerStatus));
+                other.registerStatus == registerStatus) &&
+            (identical(
+                    other.updateDisplayNameStatus, updateDisplayNameStatus) ||
+                other.updateDisplayNameStatus == updateDisplayNameStatus));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, email, password, confirmPassword, registerStatus);
+  int get hashCode => Object.hash(runtimeType, displayName, email, password,
+      confirmPassword, registerStatus, updateDisplayNameStatus);
 
   @JsonKey(ignore: true)
   @override
@@ -181,12 +219,16 @@ class _$_RegisterState implements _RegisterState {
 
 abstract class _RegisterState implements RegisterState {
   const factory _RegisterState(
-          {required final String email,
+          {required final String displayName,
+          required final String email,
           required final String password,
           required final String confirmPassword,
-          required final AsyncValue<UserCredential?> registerStatus}) =
+          required final AsyncValue<UserCredential?> registerStatus,
+          required final AsyncValue<bool?> updateDisplayNameStatus}) =
       _$_RegisterState;
 
+  @override
+  String get displayName;
   @override
   String get email;
   @override
@@ -195,6 +237,8 @@ abstract class _RegisterState implements RegisterState {
   String get confirmPassword;
   @override
   AsyncValue<UserCredential?> get registerStatus;
+  @override
+  AsyncValue<bool?> get updateDisplayNameStatus;
   @override
   @JsonKey(ignore: true)
   _$$_RegisterStateCopyWith<_$_RegisterState> get copyWith =>

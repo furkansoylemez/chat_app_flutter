@@ -1,5 +1,7 @@
 import 'package:birsu/feature/register/logic/register_state.dart';
 import 'package:birsu/usecase/register/create_user.dart';
+import 'package:birsu/usecase/register/update_user_display_name.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'register_notifier.g.dart';
@@ -9,11 +11,17 @@ class RegisterNotifier extends _$RegisterNotifier {
   @override
   RegisterState build() {
     return const RegisterState(
+      displayName: '',
       email: '',
       password: '',
       confirmPassword: '',
       registerStatus: AsyncValue.data(null),
+      updateDisplayNameStatus: AsyncValue.data(null),
     );
+  }
+
+  void displayNameChanged(String displayName) {
+    state = state.copyWith(displayName: displayName);
   }
 
   void emailChanged(String email) {
@@ -35,6 +43,17 @@ class RegisterNotifier extends _$RegisterNotifier {
         return ref
             .read(createUserProvider.notifier)
             .action(state.email, state.password);
+      }),
+    );
+  }
+
+  Future<void> updateDisplayName(User user) async {
+    state = state.copyWith(updateDisplayNameStatus: const AsyncValue.loading());
+    state = state.copyWith(
+      updateDisplayNameStatus: await AsyncValue.guard(() {
+        return ref
+            .read(updateUserDisplayNameProvider.notifier)
+            .action(user, state.displayName);
       }),
     );
   }
