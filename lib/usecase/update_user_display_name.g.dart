@@ -7,7 +7,7 @@ part of 'update_user_display_name.dart';
 // **************************************************************************
 
 String _$updateUserDisplayNameHash() =>
-    r'a4e4e148cbb4dcea6aaff1ef3ff3c68ca654157c';
+    r'452cace7acb0d5f28dde84cf50d61998b44b8d90';
 
 /// See also [UpdateUserDisplayName].
 @ProviderFor(UpdateUserDisplayName)
