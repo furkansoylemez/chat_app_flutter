@@ -6,7 +6,7 @@ part of 'create_user.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$createUserHash() => r'f45d57bb90d74fbe0c1518f8b65621d9087437c3';
+String _$createUserHash() => r'b48d6530c0bcba6b8d626155440f7bfb6aa7f71b';
 
 /// See also [CreateUser].
 @ProviderFor(CreateUser)

@@ -1,7 +1,6 @@
 import 'package:birsu/core/app_exception.dart';
 import 'package:birsu/provider/firebase_auth.dart';
 import 'package:birsu/provider/localizations_provider.dart';
-import 'package:birsu/usecase/core/core_handler.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -15,11 +14,13 @@ class SignIn extends _$SignIn {
   Future<UserCredential> action(String emailAddress, String password) async {
     final firebaseAuth = ref.read(firebaseAuthProvider);
     final loc = ref.read(localizationsProvider);
-    return futureHandler(
-        firebaseAuth.signInWithEmailAndPassword(
-          email: emailAddress,
-          password: password,
-        ), (error) {
+
+    try {
+      return await firebaseAuth.signInWithEmailAndPassword(
+        email: emailAddress,
+        password: password,
+      );
+    } catch (error) {
       String errorMessage;
       if (error is FirebaseAuthException) {
         switch (error.code) {
@@ -43,6 +44,6 @@ class SignIn extends _$SignIn {
       }
 
       throw AppException(errorMessage);
-    });
+    }
   }
 }
