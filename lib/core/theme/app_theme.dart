@@ -3,9 +3,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppTheme {
   static ThemeData get light {
-    return ThemeData.light(
+    return ThemeData(
       useMaterial3: true,
-    ).copyWith(
+      colorSchemeSeed: Colors.orange,
+      brightness: Brightness.light,
       inputDecorationTheme: InputDecorationTheme(
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8.r),
@@ -15,8 +16,15 @@ class AppTheme {
   }
 
   static ThemeData get dark {
-    return ThemeData.dark(
+    return ThemeData(
       useMaterial3: true,
-    ).copyWith();
+      colorSchemeSeed: Colors.purple,
+      brightness: Brightness.dark,
+      inputDecorationTheme: InputDecorationTheme(
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8.r),
+        ),
+      ),
+    );
   }
 }
