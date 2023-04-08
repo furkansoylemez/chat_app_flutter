@@ -1,11 +1,21 @@
 {
   "@@locale": "tr",
+  "displayName": "Görünür Ad",
+  "displayNameMinLengthError": "Görünür ad en az {displayNameMinLength} karakterden oluşmalıdır",
+  "@displayNameMinLengthError": {
+    "placeholders": {
+      "displayNameMinLength": {
+        "type": "int"
+      }
+    }
+  },
   "email": "E-posta",
   "emailAlreadyInUseError": "Bu e-posta adresine kayıtlı bir hesap zaten var.",
   "errorTitle": "Hata",
   "invalidEmailError": "Lütfen doğru bir e-posta adresi giriniz",
   "login": "Giriş Yap",
   "password": "Şifre",
+  "passwordAgain": "Şifre Tekrar",
   "passwordMinLengthError": "Şifre en az {passwordMinLength} karakterden oluşmalıdır",
   "@passwordMinLengthError": {
     "placeholders": {
