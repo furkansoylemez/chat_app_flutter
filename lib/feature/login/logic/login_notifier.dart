@@ -1,5 +1,5 @@
 import 'package:birsu/feature/login/logic/login_state.dart';
-import 'package:birsu/usecase/login/sign_in.dart';
+import 'package:birsu/usecase/sign_in.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'login_notifier.g.dart';

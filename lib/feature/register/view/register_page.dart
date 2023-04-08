@@ -4,6 +4,7 @@ import 'package:birsu/core/extension/context_extensions.dart';
 import 'package:birsu/core/extension/widget_extensions.dart';
 import 'package:birsu/core/helper/dialog_helper.dart';
 import 'package:birsu/core/helper/other_helpers.dart';
+import 'package:birsu/core/resource/resources.dart';
 import 'package:birsu/core/validators.dart';
 import 'package:birsu/feature/register/logic/register_notifier.dart';
 import 'package:birsu/widgets/custom_spacer.dart';
@@ -13,6 +14,7 @@ import 'package:birsu/widgets/form_fields/password_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lottie/lottie.dart';
 
 @RoutePage()
 class RegisterPage extends ConsumerWidget {
@@ -34,7 +36,9 @@ class RegisterPage extends ConsumerWidget {
     _listenRegisterNotifier(ref, context);
 
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: Text(context.loc.register),
+      ),
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
         child: Form(
@@ -42,6 +46,12 @@ class RegisterPage extends ConsumerWidget {
           key: _formKey,
           child: Column(
             children: [
+              Lottie.asset(
+                AppLotties.ltMediatingRabbit,
+                frameRate: FrameRate.max,
+                repeat: true,
+                animate: true,
+              ),
               DisplayNameFormField(
                 onChanged: (displayName) {
                   ref
@@ -90,7 +100,7 @@ class RegisterPage extends ConsumerWidget {
                   } else {
                     return SizedBox(
                       width: double.maxFinite,
-                      child: ElevatedButton(
+                      child: FilledButton(
                         onPressed: () {
                           if (isFormValid(_formKey)) {
                             ref
@@ -98,12 +108,13 @@ class RegisterPage extends ConsumerWidget {
                                 .register();
                           }
                         },
-                        child: Text(context.loc.login),
+                        child: Text(context.loc.register),
                       ),
                     );
                   }
                 },
               ),
+              CustomSpacer.column(50.h),
             ],
           ).paddingSymmetric(horizontal: 20.w),
         ),

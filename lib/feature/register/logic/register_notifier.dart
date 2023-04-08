@@ -1,6 +1,6 @@
 import 'package:birsu/feature/register/logic/register_state.dart';
-import 'package:birsu/usecase/register/create_user.dart';
-import 'package:birsu/usecase/register/update_user_display_name.dart';
+import 'package:birsu/usecase/create_user.dart';
+import 'package:birsu/usecase/update_user_display_name.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 

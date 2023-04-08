@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:birsu/provider/app_user.dart';
-import 'package:birsu/usecase/logout/sign_out.dart';
+import 'package:birsu/usecase/sign_out.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -11,7 +11,6 @@ class HomePage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final user = ref.watch(appUserProvider);
-    print(user);
     return Scaffold(
       appBar: AppBar(
         title: Text('Selam ${user?.displayName}'),
