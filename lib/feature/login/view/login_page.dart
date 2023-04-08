@@ -30,59 +30,62 @@ class LoginPage extends ConsumerWidget {
         prev?.loginStatus,
         next.loginStatus,
       );
-      onAsyncSuccess(next.loginStatus, () {
+      onAsyncSuccess(prev?.loginStatus, next.loginStatus, () {
         context.router.replace(const HomeRoute());
       });
     });
     return Scaffold(
-      body: Form(
-        autovalidateMode: AutovalidateMode.onUserInteraction,
-        key: _formKey,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            EmailFormField(
-              onChanged: (email) {
-                ref.read(loginNotifierProvider.notifier).emailChanged(email);
-              },
-            ),
-            CustomSpacer.column(16.h),
-            PasswordFormField(
-              onChanged: (password) {
-                ref
-                    .read(loginNotifierProvider.notifier)
-                    .passwordChanged(password);
-              },
-            ),
-            CustomSpacer.column(20.h),
-            Builder(
-              builder: (context) {
-                if (loginStatus is AsyncLoading) {
-                  return const CircularProgressIndicator();
-                } else {
-                  return SizedBox(
-                    width: double.maxFinite,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        if (isFormValid(_formKey)) {
-                          ref.read(loginNotifierProvider.notifier).login();
-                        }
-                      },
-                      child: Text(context.loc.login),
-                    ),
-                  );
-                }
-              },
-            ),
-            TextButton(
-              onPressed: () {
-                context.router.push(RegisterRoute());
-              },
-              child: Text(context.loc.register),
-            ),
-          ],
-        ).paddingSymmetric(horizontal: 20.w),
-      ),
+      body: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
+        child: Form(
+          autovalidateMode: AutovalidateMode.onUserInteraction,
+          key: _formKey,
+          child: Column(
+            children: [
+              EmailFormField(
+                onChanged: (email) {
+                  ref.read(loginNotifierProvider.notifier).emailChanged(email);
+                },
+              ),
+              CustomSpacer.column(16.h),
+              PasswordFormField(
+                labelText: context.loc.password,
+                onChanged: (password) {
+                  ref
+                      .read(loginNotifierProvider.notifier)
+                      .passwordChanged(password);
+                },
+              ),
+              CustomSpacer.column(20.h),
+              Builder(
+                builder: (context) {
+                  if (loginStatus is AsyncLoading) {
+                    return const CircularProgressIndicator();
+                  } else {
+                    return SizedBox(
+                      width: double.maxFinite,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          if (isFormValid(_formKey)) {
+                            ref.read(loginNotifierProvider.notifier).login();
+                          }
+                        },
+                        child: Text(context.loc.login),
+                      ),
+                    );
+                  }
+                },
+              ),
+              TextButton(
+                onPressed: () {
+                  context.router.push(RegisterRoute());
+                },
+                child: Text(context.loc.register),
+              ),
+            ],
+          ).paddingSymmetric(horizontal: 20.w),
+        ),
+      ).center,
     );
   }
 }
