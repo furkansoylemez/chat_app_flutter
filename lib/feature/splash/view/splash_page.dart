@@ -27,7 +27,7 @@ class _SplashPageState extends ConsumerState<SplashPage> {
 
   void _checkAppUser() {
     Future.delayed(AppConstants.splashDuration, () {
-      final appUser = ref.watch(appUserProvider);
+      final appUser = ref.read(appUserProvider);
       if (appUser != null) {
         _replaceWithHomePage();
       } else {
