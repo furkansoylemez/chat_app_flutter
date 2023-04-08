@@ -8,16 +8,18 @@ class PasswordFormField extends StatelessWidget {
     super.key,
     this.onChanged,
     this.validators,
+    required this.labelText,
   });
   final void Function(String)? onChanged;
   final List<FieldValidator<dynamic>>? validators;
+  final String labelText;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       onChanged: onChanged,
       obscureText: true,
       decoration: InputDecoration(
-        labelText: context.loc.password,
+        labelText: labelText,
       ),
       validator: MultiValidator([
         RequiredValidator(errorText: context.loc.requiredError),
