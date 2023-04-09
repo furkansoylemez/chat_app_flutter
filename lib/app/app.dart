@@ -1,6 +1,7 @@
 import 'package:birsu/core/app_router/app_router.dart';
 import 'package:birsu/core/extension/context_extensions.dart';
 import 'package:birsu/core/theme/app_theme.dart';
+import 'package:birsu/provider/app_theme_mode.dart';
 import 'package:birsu/provider/app_user.dart';
 import 'package:birsu/widgets/dismissible_body.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +14,7 @@ class App extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final router = ref.watch(appRouterProvider);
+    final appThemeMode = ref.watch(appThemeModeProvider);
     _listenUserLogOut(ref, router);
     return DismissibleBody(
       child: ScreenUtilInit(
@@ -20,6 +22,7 @@ class App extends ConsumerWidget {
           return MaterialApp.router(
             theme: AppTheme.light,
             darkTheme: AppTheme.dark,
+            themeMode: appThemeMode,
             localizationsDelegates: AppLocalizations.localizationsDelegates,
             supportedLocales: AppLocalizations.supportedLocales,
             routerConfig: router.config(),

@@ -11,4 +11,9 @@ class AppConstants {
   static const String conversationsCollection = 'conversations';
 
   /// Collection names
+
+  ///Storage keys
+  static const String isLightThemeKey = 'isLightTheme';
+
+  ///Storage keys
 }

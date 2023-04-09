@@ -7,6 +7,7 @@ import 'package:birsu/feature/conversations/logic/conversations.dart';
 import 'package:birsu/feature/conversations/view/conversation_item.dart';
 import 'package:birsu/feature/drawer/view/drawer_page.dart';
 import 'package:birsu/model/conversation.dart';
+import 'package:birsu/provider/app_theme_mode.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -19,6 +20,7 @@ class ConversationsPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final conversations = ref.watch(conversationsProvider);
+    final appThemeMode = ref.watch(appThemeModeProvider);
 
     return Scaffold(
       extendBodyBehindAppBar: true,
@@ -55,7 +57,9 @@ class ConversationsPage extends ConsumerWidget {
               color: Theme.of(context).cardColor.withOpacity(0.4),
             ),
             child: Lottie.asset(
-              AppLotties.ltLightBackground,
+              appThemeMode == ThemeMode.light
+                  ? AppLotties.ltLightBackground
+                  : AppLotties.ltDarkBackground,
               frameRate: FrameRate.max,
               repeat: true,
               animate: true,

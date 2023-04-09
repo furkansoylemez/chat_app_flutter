@@ -19,6 +19,7 @@ dependencies:
   flutter_screenutil: ^5.7.0
   form_field_validator: ^1.1.0
   freezed_annotation: ^2.2.0
+  get_storage: ^2.1.1
   intl: ^0.17.0
   lottie: ^2.3.2
   riverpod_annotation: ^2.0.3
