@@ -3,10 +3,10 @@ import 'package:birsu/provider/firebase_auth.dart';
 import 'package:birsu/usecase/get_users.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'home_users.g.dart';
+part 'users.g.dart';
 
 @riverpod
-class HomeUsers extends _$HomeUsers {
+class Users extends _$Users {
   @override
   FutureOr<List<UserModel>> build() async {
     return _fetchUsers();

@@ -1,24 +1,24 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'home_users.dart';
+part of 'users.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$homeUsersHash() => r'c3b8e6f523ad90813e7f790ea0d7c31d21d91439';
+String _$usersHash() => r'd72863424d70f543351e238a8a2507b25b397e50';
 
-/// See also [HomeUsers].
-@ProviderFor(HomeUsers)
-final homeUsersProvider =
-    AutoDisposeAsyncNotifierProvider<HomeUsers, List<UserModel>>.internal(
-  HomeUsers.new,
-  name: r'homeUsersProvider',
+/// See also [Users].
+@ProviderFor(Users)
+final usersProvider =
+    AutoDisposeAsyncNotifierProvider<Users, List<UserModel>>.internal(
+  Users.new,
+  name: r'usersProvider',
   debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$homeUsersHash,
+      const bool.fromEnvironment('dart.vm.product') ? null : _$usersHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$HomeUsers = AutoDisposeAsyncNotifier<List<UserModel>>;
+typedef _$Users = AutoDisposeAsyncNotifier<List<UserModel>>;
 // ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions

@@ -130,8 +130,10 @@ class RegisterPage extends ConsumerWidget {
       );
 
       onAsyncSuccess(prev?.registerStatus, next.registerStatus, () {
-        context.router
-            .pushAndPopUntil(const HomeRoute(), predicate: (_) => false);
+        context.router.pushAndPopUntil(
+          const ConversationsRoute(),
+          predicate: (_) => false,
+        );
       });
     });
   }

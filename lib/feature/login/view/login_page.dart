@@ -34,7 +34,7 @@ class LoginPage extends ConsumerWidget {
         next.loginStatus,
       );
       onAsyncSuccess(prev?.loginStatus, next.loginStatus, () {
-        context.router.replace(const HomeRoute());
+        context.router.replace(const ConversationsRoute());
       });
     });
     return Scaffold(

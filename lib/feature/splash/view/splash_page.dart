@@ -29,7 +29,7 @@ class _SplashPageState extends ConsumerState<SplashPage> {
     Future.delayed(AppConstants.splashDuration, () {
       final appUser = ref.read(appUserProvider);
       if (appUser != null) {
-        _replaceWithHomePage();
+        _replaceWithConversationsPage();
       } else {
         _replaceWithLoginPage();
       }
@@ -40,8 +40,8 @@ class _SplashPageState extends ConsumerState<SplashPage> {
     context.router.replace(LoginRoute());
   }
 
-  void _replaceWithHomePage() {
-    context.router.replace(const HomeRoute());
+  void _replaceWithConversationsPage() {
+    context.router.replace(const ConversationsRoute());
   }
 
   @override
