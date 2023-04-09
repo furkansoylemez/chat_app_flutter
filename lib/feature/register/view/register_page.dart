@@ -26,10 +26,6 @@ class RegisterPage extends ConsumerWidget {
       registerNotifierProvider.select((state) => state.registerStatus),
     );
 
-    final updateDisplayNameStatus = ref.watch(
-      registerNotifierProvider.select((state) => state.updateDisplayNameStatus),
-    );
-
     final password =
         ref.watch(registerNotifierProvider.select((state) => state.password));
 
@@ -94,8 +90,7 @@ class RegisterPage extends ConsumerWidget {
               CustomSpacer.column(20.h),
               Builder(
                 builder: (context) {
-                  if (registerStatus is AsyncLoading ||
-                      updateDisplayNameStatus is AsyncLoading) {
+                  if (registerStatus is AsyncLoading) {
                     return const CircularProgressIndicator();
                   } else {
                     return SizedBox(
@@ -128,27 +123,13 @@ class RegisterPage extends ConsumerWidget {
   ) {
     final dialogHelper = ref.watch(dialogHelperProvider);
     ref.listen(registerNotifierProvider, (prev, next) {
-      dialogHelper
-        ..onAsyncErrorShowDialog(
-          context,
-          prev?.registerStatus,
-          next.registerStatus,
-        )
-        ..onAsyncErrorShowDialog(
-          context,
-          prev?.updateDisplayNameStatus,
-          next.updateDisplayNameStatus,
-        );
+      dialogHelper.onAsyncErrorShowDialog(
+        context,
+        prev?.registerStatus,
+        next.registerStatus,
+      );
 
       onAsyncSuccess(prev?.registerStatus, next.registerStatus, () {
-        final user = next.registerStatus.asData?.value?.user;
-        if (user != null) {
-          ref.read(registerNotifierProvider.notifier).updateDisplayName(user);
-        }
-      });
-
-      onAsyncSuccess(
-          prev?.updateDisplayNameStatus, next.updateDisplayNameStatus, () {
         context.router
             .pushAndPopUntil(const HomeRoute(), predicate: (_) => false);
       });

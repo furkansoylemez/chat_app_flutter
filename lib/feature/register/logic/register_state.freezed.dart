@@ -20,10 +20,7 @@ mixin _$RegisterState {
   String get email => throw _privateConstructorUsedError;
   String get password => throw _privateConstructorUsedError;
   String get confirmPassword => throw _privateConstructorUsedError;
-  AsyncValue<UserCredential?> get registerStatus =>
-      throw _privateConstructorUsedError;
-  AsyncValue<bool?> get updateDisplayNameStatus =>
-      throw _privateConstructorUsedError;
+  AsyncValue<bool?> get registerStatus => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $RegisterStateCopyWith<RegisterState> get copyWith =>
@@ -41,8 +38,7 @@ abstract class $RegisterStateCopyWith<$Res> {
       String email,
       String password,
       String confirmPassword,
-      AsyncValue<UserCredential?> registerStatus,
-      AsyncValue<bool?> updateDisplayNameStatus});
+      AsyncValue<bool?> registerStatus});
 }
 
 /// @nodoc
@@ -63,7 +59,6 @@ class _$RegisterStateCopyWithImpl<$Res, $Val extends RegisterState>
     Object? password = null,
     Object? confirmPassword = null,
     Object? registerStatus = null,
-    Object? updateDisplayNameStatus = null,
   }) {
     return _then(_value.copyWith(
       displayName: null == displayName
@@ -85,10 +80,6 @@ class _$RegisterStateCopyWithImpl<$Res, $Val extends RegisterState>
       registerStatus: null == registerStatus
           ? _value.registerStatus
           : registerStatus // ignore: cast_nullable_to_non_nullable
-              as AsyncValue<UserCredential?>,
-      updateDisplayNameStatus: null == updateDisplayNameStatus
-          ? _value.updateDisplayNameStatus
-          : updateDisplayNameStatus // ignore: cast_nullable_to_non_nullable
               as AsyncValue<bool?>,
     ) as $Val);
   }
@@ -107,8 +98,7 @@ abstract class _$$_RegisterStateCopyWith<$Res>
       String email,
       String password,
       String confirmPassword,
-      AsyncValue<UserCredential?> registerStatus,
-      AsyncValue<bool?> updateDisplayNameStatus});
+      AsyncValue<bool?> registerStatus});
 }
 
 /// @nodoc
@@ -127,7 +117,6 @@ class __$$_RegisterStateCopyWithImpl<$Res>
     Object? password = null,
     Object? confirmPassword = null,
     Object? registerStatus = null,
-    Object? updateDisplayNameStatus = null,
   }) {
     return _then(_$_RegisterState(
       displayName: null == displayName
@@ -149,10 +138,6 @@ class __$$_RegisterStateCopyWithImpl<$Res>
       registerStatus: null == registerStatus
           ? _value.registerStatus
           : registerStatus // ignore: cast_nullable_to_non_nullable
-              as AsyncValue<UserCredential?>,
-      updateDisplayNameStatus: null == updateDisplayNameStatus
-          ? _value.updateDisplayNameStatus
-          : updateDisplayNameStatus // ignore: cast_nullable_to_non_nullable
               as AsyncValue<bool?>,
     ));
   }
@@ -166,8 +151,7 @@ class _$_RegisterState implements _RegisterState {
       required this.email,
       required this.password,
       required this.confirmPassword,
-      required this.registerStatus,
-      required this.updateDisplayNameStatus});
+      required this.registerStatus});
 
   @override
   final String displayName;
@@ -178,13 +162,11 @@ class _$_RegisterState implements _RegisterState {
   @override
   final String confirmPassword;
   @override
-  final AsyncValue<UserCredential?> registerStatus;
-  @override
-  final AsyncValue<bool?> updateDisplayNameStatus;
+  final AsyncValue<bool?> registerStatus;
 
   @override
   String toString() {
-    return 'RegisterState(displayName: $displayName, email: $email, password: $password, confirmPassword: $confirmPassword, registerStatus: $registerStatus, updateDisplayNameStatus: $updateDisplayNameStatus)';
+    return 'RegisterState(displayName: $displayName, email: $email, password: $password, confirmPassword: $confirmPassword, registerStatus: $registerStatus)';
   }
 
   @override
@@ -200,15 +182,12 @@ class _$_RegisterState implements _RegisterState {
             (identical(other.confirmPassword, confirmPassword) ||
                 other.confirmPassword == confirmPassword) &&
             (identical(other.registerStatus, registerStatus) ||
-                other.registerStatus == registerStatus) &&
-            (identical(
-                    other.updateDisplayNameStatus, updateDisplayNameStatus) ||
-                other.updateDisplayNameStatus == updateDisplayNameStatus));
+                other.registerStatus == registerStatus));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, displayName, email, password,
-      confirmPassword, registerStatus, updateDisplayNameStatus);
+      confirmPassword, registerStatus);
 
   @JsonKey(ignore: true)
   @override
@@ -219,13 +198,11 @@ class _$_RegisterState implements _RegisterState {
 
 abstract class _RegisterState implements RegisterState {
   const factory _RegisterState(
-          {required final String displayName,
-          required final String email,
-          required final String password,
-          required final String confirmPassword,
-          required final AsyncValue<UserCredential?> registerStatus,
-          required final AsyncValue<bool?> updateDisplayNameStatus}) =
-      _$_RegisterState;
+      {required final String displayName,
+      required final String email,
+      required final String password,
+      required final String confirmPassword,
+      required final AsyncValue<bool?> registerStatus}) = _$_RegisterState;
 
   @override
   String get displayName;
@@ -236,9 +213,7 @@ abstract class _RegisterState implements RegisterState {
   @override
   String get confirmPassword;
   @override
-  AsyncValue<UserCredential?> get registerStatus;
-  @override
-  AsyncValue<bool?> get updateDisplayNameStatus;
+  AsyncValue<bool?> get registerStatus;
   @override
   @JsonKey(ignore: true)
   _$$_RegisterStateCopyWith<_$_RegisterState> get copyWith =>

@@ -11,7 +11,6 @@ class RegisterState with _$RegisterState {
     required String email,
     required String password,
     required String confirmPassword,
-    required AsyncValue<UserCredential?> registerStatus,
-    required AsyncValue<bool?> updateDisplayNameStatus,
+    required AsyncValue<bool?> registerStatus,
   }) = _RegisterState;
 }
