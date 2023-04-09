@@ -1,3 +1,5 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:birsu/core/app_router/app_router.dart';
 import 'package:birsu/core/extension/context_extensions.dart';
 import 'package:birsu/feature/conversations/logic/conversation_user.dart';
 import 'package:birsu/model/conversation.dart';
@@ -34,7 +36,13 @@ class ConversationItem extends ConsumerWidget {
             overflow: TextOverflow.ellipsis,
           ),
           trailing: Text(conversation.timestamp),
-          onTap: () {},
+          onTap: () {
+            context.router.push(
+              ChatRoute(
+                chatUser: chatUserModel,
+              ),
+            );
+          },
         );
       },
       error: (error, _) {

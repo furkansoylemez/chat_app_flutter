@@ -37,7 +37,9 @@ class UsersPage extends ConsumerWidget {
                   title: Text(data[index].name),
                   subtitle: Text(data[index].email),
                   onTap: () {
-                    context.router.push(ChatRoute(chatUser: data[index]));
+                    context.router
+                      ..popUntilRouteWithName(ConversationsRoute.name)
+                      ..push(ChatRoute(chatUser: data[index]));
                   },
                 );
               },

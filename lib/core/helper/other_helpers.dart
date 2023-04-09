@@ -27,3 +27,9 @@ String getFormattedDate(int millisecondsSinceEpoch) {
     return DateFormat('dd/MM/yyyy').format(date);
   }
 }
+
+String generateConversationId(String senderId, String receiverId) {
+  return senderId.compareTo(receiverId) < 0
+      ? '${senderId}_$receiverId'
+      : '${receiverId}_$senderId';
+}
