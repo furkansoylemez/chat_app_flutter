@@ -12,7 +12,7 @@ class DrawerPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final user = ref.watch(appUserProvider);
+    final appUser = ref.watch(appUserProvider);
     return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,
@@ -25,7 +25,7 @@ class DrawerPage extends ConsumerWidget {
                   radius: 35.r,
                 ),
                 Text(
-                  user?.displayName ?? '',
+                  appUser?.name ?? '',
                   style: Theme.of(context).textTheme.headlineSmall,
                 ),
               ],
