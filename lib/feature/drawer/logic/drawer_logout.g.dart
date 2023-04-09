@@ -6,7 +6,7 @@ part of 'drawer_logout.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$drawerLogoutHash() => r'3a34705c58279ae50191fddbe097a95794cdecbd';
+String _$drawerLogoutHash() => r'd25f885df004c13054db69c88375c6288d4e53c1';
 
 /// See also [DrawerLogout].
 @ProviderFor(DrawerLogout)
