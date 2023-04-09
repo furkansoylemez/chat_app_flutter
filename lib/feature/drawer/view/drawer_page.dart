@@ -32,12 +32,6 @@ class DrawerPage extends ConsumerWidget {
             ),
           ),
           DrawerListTile(
-            title: context.loc.profile,
-            iconData: Icons.person_2_outlined,
-            onTap: () {},
-          ),
-          const Divider(),
-          DrawerListTile(
             title: context.loc.logout,
             iconData: Icons.logout,
             onTap: () {

@@ -103,7 +103,15 @@ class RegisterPage extends ConsumerWidget {
                                 .register();
                           }
                         },
-                        child: Text(context.loc.register),
+                        child: Text(
+                          context.loc.register,
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyLarge
+                              ?.copyWith(
+                                color: Theme.of(context).colorScheme.onPrimary,
+                              ),
+                        ),
                       ),
                     );
                   }

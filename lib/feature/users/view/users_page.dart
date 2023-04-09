@@ -19,6 +19,7 @@ class UsersPage extends ConsumerWidget {
     );
 
     return Scaffold(
+      appBar: AppBar(),
       body: users.when(
         data: (data) {
           if (data.isNotEmpty) {
