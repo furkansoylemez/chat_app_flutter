@@ -8,6 +8,7 @@ class AppConstants {
 
   /// Collection names
   static const String usersCollection = 'users';
+  static const String conversationsCollection = 'conversations';
 
   /// Collection names
 }

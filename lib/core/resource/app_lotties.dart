@@ -9,4 +9,5 @@ class AppLotties {
       'assets/lotties/light_background.json';
   static const String ltMediatingRabbit =
       'assets/lotties/mediating_rabbit.json';
+  static const String ltSpace = 'assets/lotties/space.json';
 }

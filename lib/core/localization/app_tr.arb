@@ -1,5 +1,7 @@
 {
   "@@locale": "tr",
+  "chats": "Sohbetler",
+  "conversationsEmptyInfo": "Burası oldukça boş görünüyor",
   "displayName": "Görünür Ad",
   "displayNameMinLengthError": "Görünür ad en az {displayNameMinLength} karakterden oluşmalıdır",
   "@displayNameMinLengthError": {
@@ -9,12 +11,16 @@
       }
     }
   },
+  "dontHaveAnAccount": "Hesabın yok mu?",
   "email": "E-posta",
   "emailAlreadyInUseError": "Bu e-posta adresine kayıtlı bir hesap zaten var.",
   "errorTitle": "Hata",
   "invalidEmailError": "Lütfen doğru bir e-posta adresi giriniz",
   "login": "Giriş Yap",
+  "loginHeader1": "Selam!",
+  "loginHeader2": "Hoşgeldin, lütfen giriş yap",
   "logout": "Çıkış Yap",
+  "newChat": "Yeni Sohbet",
   "password": "Şifre",
   "passwordAgain": "Şifre Tekrar",
   "passwordMinLengthError": "Şifre en az {passwordMinLength} karakterden oluşmalıdır",
@@ -33,5 +39,13 @@
   "userDisabledError": "Kullanıcı engellendi.",
   "userNotFoundError": "Kullanıcı bulunamadı.",
   "weakPasswordError": "Girdiğiniz şifre çok zayıf.",
-  "wrongPasswordError": "Yanlış şifre girdiniz."
+  "wrongPasswordError": "Yanlış şifre girdiniz.",
+  "you": "Siz: {lastMessage}",
+  "@you": {
+    "placeholders": {
+      "lastMessage": {
+        "type": "String"
+      }
+    }
+  }
 }

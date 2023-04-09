@@ -14,16 +14,20 @@ abstract class _$AppRouter extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
-    HomeRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const HomePage(),
-      );
-    },
     SplashRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const SplashPage(),
+      );
+    },
+    ChatRoute.name: (routeData) {
+      final args = routeData.argsAs<ChatRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: ChatPage(
+          args.chatUser,
+          key: args.key,
+        ),
       );
     },
     RegisterRoute.name: (routeData) {
@@ -32,6 +36,18 @@ abstract class _$AppRouter extends RootStackRouter {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: RegisterPage(key: args.key),
+      );
+    },
+    ConversationsRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const ConversationsPage(),
+      );
+    },
+    UsersRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const UsersPage(),
       );
     },
     LoginRoute.name: (routeData) {
@@ -46,20 +62,6 @@ abstract class _$AppRouter extends RootStackRouter {
 }
 
 /// generated route for
-/// [HomePage]
-class HomeRoute extends PageRouteInfo<void> {
-  const HomeRoute({List<PageRouteInfo>? children})
-      : super(
-          HomeRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'HomeRoute';
-
-  static const PageInfo<void> page = PageInfo<void>(name);
-}
-
-/// generated route for
 /// [SplashPage]
 class SplashRoute extends PageRouteInfo<void> {
   const SplashRoute({List<PageRouteInfo>? children})
@@ -71,6 +73,43 @@ class SplashRoute extends PageRouteInfo<void> {
   static const String name = 'SplashRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [ChatPage]
+class ChatRoute extends PageRouteInfo<ChatRouteArgs> {
+  ChatRoute({
+    required UserModel chatUser,
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
+          ChatRoute.name,
+          args: ChatRouteArgs(
+            chatUser: chatUser,
+            key: key,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'ChatRoute';
+
+  static const PageInfo<ChatRouteArgs> page = PageInfo<ChatRouteArgs>(name);
+}
+
+class ChatRouteArgs {
+  const ChatRouteArgs({
+    required this.chatUser,
+    this.key,
+  });
+
+  final UserModel chatUser;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'ChatRouteArgs{chatUser: $chatUser, key: $key}';
+  }
 }
 
 /// generated route for
@@ -100,6 +139,34 @@ class RegisterRouteArgs {
   String toString() {
     return 'RegisterRouteArgs{key: $key}';
   }
+}
+
+/// generated route for
+/// [ConversationsPage]
+class ConversationsRoute extends PageRouteInfo<void> {
+  const ConversationsRoute({List<PageRouteInfo>? children})
+      : super(
+          ConversationsRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'ConversationsRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [UsersPage]
+class UsersRoute extends PageRouteInfo<void> {
+  const UsersRoute({List<PageRouteInfo>? children})
+      : super(
+          UsersRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'UsersRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for

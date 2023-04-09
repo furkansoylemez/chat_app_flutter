@@ -1,14 +1,16 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:birsu/feature/home/view/home_page.dart';
+import 'package:birsu/feature/chat/view/chat_page.dart';
+import 'package:birsu/feature/conversations/view/conversations_page.dart';
 import 'package:birsu/feature/login/view/login_page.dart';
 import 'package:birsu/feature/register/view/register_page.dart';
 import 'package:birsu/feature/splash/view/splash_page.dart';
+import 'package:birsu/feature/users/view/users_page.dart';
+import 'package:birsu/model/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'app_router.gr.dart';
-
 part 'app_router.g.dart';
+part 'app_router.gr.dart';
 
 @riverpod
 AppRouter appRouter(AppRouterRef ref) {
@@ -32,8 +34,16 @@ class AppRouter extends _$AppRouter {
       path: '/login',
     ),
     AutoRoute(
-      page: HomeRoute.page,
-      path: '/home',
+      page: UsersRoute.page,
+      path: '/users',
+    ),
+    AutoRoute(
+      page: ConversationsRoute.page,
+      path: '/conversations',
+    ),
+    AutoRoute(
+      page: ChatRoute.page,
+      path: '/chat',
     ),
   ];
 
