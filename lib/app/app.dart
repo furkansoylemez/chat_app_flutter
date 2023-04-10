@@ -1,3 +1,4 @@
+import 'package:birsu/core/app_constants.dart';
 import 'package:birsu/core/app_router/app_router.dart';
 import 'package:birsu/core/extension/context_extensions.dart';
 import 'package:birsu/core/theme/app_theme.dart';
@@ -14,7 +15,6 @@ class App extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final router = ref.watch(appRouterProvider);
-    final appThemeMode = ref.watch(appThemeModeProvider);
     _listenUserLogOut(ref, router);
     return DismissibleBody(
       child: ScreenUtilInit(
@@ -22,15 +22,33 @@ class App extends ConsumerWidget {
           return MaterialApp.router(
             theme: AppTheme.light,
             darkTheme: AppTheme.dark,
-            themeMode: appThemeMode,
+            themeMode: ref.watch(appThemeModeProvider),
             localizationsDelegates: AppLocalizations.localizationsDelegates,
             supportedLocales: AppLocalizations.supportedLocales,
+            localeResolutionCallback: _localeResolutionCallback,
             routerConfig: router.config(),
             debugShowCheckedModeBanner: false,
           );
         },
       ),
     );
+  }
+
+  Locale? _localeResolutionCallback(
+    Locale? locale,
+    Iterable<Locale> supportedLocales,
+  ) {
+    if (locale == null) {
+      return AppConstants.defaultLocale;
+    }
+
+    for (final supportedLocale in supportedLocales) {
+      if (supportedLocale.languageCode == locale.languageCode) {
+        return supportedLocale;
+      }
+    }
+
+    return AppConstants.defaultLocale;
   }
 
   void _listenUserLogOut(WidgetRef ref, AppRouter router) {

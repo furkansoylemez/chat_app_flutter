@@ -1,9 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:birsu/core/app_router/app_router.dart';
 import 'package:birsu/core/extension/context_extensions.dart';
+import 'package:birsu/core/helper/other_helpers.dart';
 import 'package:birsu/feature/conversations/logic/conversation_user.dart';
+import 'package:birsu/model/app_user.dart';
 import 'package:birsu/model/conversation.dart';
-import 'package:birsu/model/user_model.dart';
 import 'package:birsu/widgets/empty_avatar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -19,15 +20,15 @@ class ConversationItem extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final conversationUser =
+    final otherUserData =
         ref.watch(conversationUserProvider(conversation.otherUserId));
-    return conversationUser.when(
+    return otherUserData.when(
       data: (data) {
-        final chatUserModel = UserModel.fromDocument(data);
+        final otherUser = AppUser.fromDocument(data);
         return ListTile(
           contentPadding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 5.h),
           leading: EmptyAvatar(radius: 25.r),
-          title: Text(chatUserModel.name),
+          title: Text(otherUser.name),
           subtitle: Text(
             conversation.lastMessage.senderId == conversation.otherUserId
                 ? conversation.lastMessage.content
@@ -35,13 +36,9 @@ class ConversationItem extends ConsumerWidget {
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
           ),
-          trailing: Text(conversation.timestamp),
+          trailing: Text(getMessageFormattedDate(conversation.timestamp)),
           onTap: () {
-            context.router.push(
-              ChatRoute(
-                chatUser: chatUserModel,
-              ),
-            );
+            _navigateChatPage(context, otherUser);
           },
         );
       },
@@ -51,6 +48,14 @@ class ConversationItem extends ConsumerWidget {
       loading: () {
         return const SizedBox.shrink();
       },
+    );
+  }
+
+  void _navigateChatPage(BuildContext context, AppUser otherUser) {
+    context.router.push(
+      ChatRoute(
+        chatUser: otherUser,
+      ),
     );
   }
 }

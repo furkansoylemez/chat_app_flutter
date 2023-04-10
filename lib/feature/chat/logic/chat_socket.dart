@@ -1,7 +1,7 @@
 import 'package:birsu/core/app_constants.dart';
 import 'package:birsu/feature/chat/logic/messages.dart';
 import 'package:birsu/feature/chat/logic/other_user_status.dart';
-import 'package:birsu/model/message_model.dart';
+import 'package:birsu/model/message.dart';
 import 'package:birsu/provider/app_user.dart';
 import 'package:flutter/foundation.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -55,7 +55,7 @@ class ChatSocket extends _$ChatSocket {
       state.emit(AppConstants.sendMessageEvent, messageData);
       ref
           .read(messagesProvider.notifier)
-          .addMessage(MessageModel.fromMap(messageData));
+          .addMessage(Message.fromMap(messageData));
     }
   }
 
@@ -65,7 +65,7 @@ class ChatSocket extends _$ChatSocket {
         if (messageData['senderId'] == otherUserId &&
             messageData['receiverId'] == ref.read(appUserProvider)?.uid) {
           ref.read(messagesProvider.notifier).addMessage(
-                MessageModel.fromMap(messageData as Map<String, dynamic>),
+                Message.fromMap(messageData as Map<String, dynamic>),
               );
         }
       })

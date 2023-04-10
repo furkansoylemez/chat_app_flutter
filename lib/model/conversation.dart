@@ -1,4 +1,3 @@
-import 'package:birsu/core/helper/other_helpers.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Conversation {
@@ -8,28 +7,27 @@ class Conversation {
     required this.lastMessage,
     required this.timestamp,
   });
-  factory Conversation.fromFirestore(DocumentSnapshot snapshot) {
-    final data = snapshot.data() as Map<String, dynamic>;
-    final lastMessageData = data['lastMessage'] as Map<String, dynamic>;
+  factory Conversation.fromDocument(DocumentSnapshot doc) {
+    final lastMessageData = doc['lastMessage'] as Map<String, dynamic>;
 
     return Conversation(
-      id: snapshot.id,
-      otherUserId: data['otherUserId'] as String,
-      lastMessage: Message(
+      id: doc.id,
+      otherUserId: doc['otherUserId'] as String,
+      lastMessage: LastMessage(
         content: lastMessageData['content'] as String,
         senderId: lastMessageData['senderId'] as String,
       ),
-      timestamp: getFormattedDate(data['timestamp'] as int),
+      timestamp: doc['timestamp'] as int,
     );
   }
   final String id;
   final String otherUserId;
-  final Message lastMessage;
-  final String timestamp;
+  final LastMessage lastMessage;
+  final int timestamp;
 }
 
-class Message {
-  Message({required this.content, required this.senderId});
+class LastMessage {
+  LastMessage({required this.content, required this.senderId});
   final String content;
   final String senderId;
 }

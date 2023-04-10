@@ -79,7 +79,7 @@ class SplashRoute extends PageRouteInfo<void> {
 /// [ChatPage]
 class ChatRoute extends PageRouteInfo<ChatRouteArgs> {
   ChatRoute({
-    required UserModel chatUser,
+    required AppUser chatUser,
     Key? key,
     List<PageRouteInfo>? children,
   }) : super(
@@ -102,7 +102,7 @@ class ChatRouteArgs {
     this.key,
   });
 
-  final UserModel chatUser;
+  final AppUser chatUser;
 
   final Key? key;
 

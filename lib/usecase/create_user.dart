@@ -33,7 +33,7 @@ class CreateUser {
   final FirebaseFirestore firebaseFirestore;
   final AppLocalizations loc;
 
-  Future<bool> action(
+  Future<void> action(
     String displayName,
     String emailAddress,
     String password,
@@ -59,8 +59,6 @@ class CreateUser {
           },
         );
       }
-
-      return true;
     } catch (error) {
       String errorMessage;
       if (error is FirebaseAuthException) {

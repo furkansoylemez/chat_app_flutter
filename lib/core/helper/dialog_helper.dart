@@ -40,16 +40,4 @@ class DialogHelper {
       content: error.toString(),
     );
   }
-
-  void onAsyncErrorShowDialog(
-    BuildContext context,
-    AsyncValue<dynamic>? prevAsync,
-    AsyncValue<dynamic> nextAsync,
-  ) {
-    if (prevAsync != nextAsync &&
-        nextAsync is AsyncError &&
-        nextAsync.hasError) {
-      showErrorDialog(context, nextAsync.error);
-    }
-  }
 }

@@ -8,7 +8,7 @@ part 'app_theme_mode.g.dart';
 class AppThemeMode extends _$AppThemeMode {
   @override
   ThemeMode build() {
-    final storage = ref.watch(storageHelperProvider.notifier);
+    final storage = ref.read(storageHelperProvider.notifier);
 
     if (storage.isLightTheme) {
       return ThemeMode.light;

@@ -1,16 +1,14 @@
-import 'package:birsu/model/user_model.dart';
+import 'package:birsu/model/app_user.dart';
 import 'package:birsu/provider/user_changes.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'app_user.g.dart';
 
 @riverpod
-UserModel? appUser(AppUserRef ref) {
-  final userChanges = ref.watch(userChangesProvider);
-  final user = userChanges.asData?.value;
+AppUser? appUser(AppUserRef ref) {
+  final user = ref.watch(userChangesProvider).value;
   if (user != null) {
-    final appUser = UserModel.fromFirebaseUser(user);
-    return appUser;
+    return AppUser.fromFirebaseUser(user);
   } else {
     return null;
   }

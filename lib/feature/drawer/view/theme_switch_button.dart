@@ -14,48 +14,53 @@ class ThemeSwitchButton extends ConsumerStatefulWidget {
 
 class _ThemeSwitchButtonState extends ConsumerState<ThemeSwitchButton>
     with SingleTickerProviderStateMixin {
-  late final AnimationController _controller;
+  late final AnimationController _animationController;
 
   @override
   void initState() {
-    _controller = AnimationController(
+    _initAnimationController();
+
+    super.initState();
+  }
+
+  void _initAnimationController() {
+    _animationController = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 1000),
     );
-
-    final initialMode = ref.read(appThemeModeProvider);
-    if (initialMode == ThemeMode.light) {
-      _controller.value = 0;
+    if (ref.read(appThemeModeProvider) == ThemeMode.light) {
+      _animationController.value = 0;
     } else {
-      _controller.value = 0.5;
+      _animationController.value = 0.5;
     }
-    super.initState();
   }
 
   @override
   void dispose() {
-    _controller.dispose();
+    _animationController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        final appThemeMode = ref.read(appThemeModeProvider);
-        if (appThemeMode == ThemeMode.light) {
-          _controller.animateTo(0.5);
-        } else {
-          _controller.animateTo(0);
-        }
-        ref.read(appThemeModeProvider.notifier).toggleMode();
-      },
+      onTap: _toggleTheme,
       child: LottieBuilder.asset(
         AppLotties.ltThemeSwitch,
-        controller: _controller,
+        controller: _animationController,
         animate: false,
         fit: BoxFit.contain,
       ),
     );
+  }
+
+  void _toggleTheme() {
+    final appThemeMode = ref.read(appThemeModeProvider);
+    if (appThemeMode == ThemeMode.light) {
+      _animationController.animateTo(0.5);
+    } else {
+      _animationController.animateTo(0);
+    }
+    ref.read(appThemeModeProvider.notifier).toggleMode();
   }
 }

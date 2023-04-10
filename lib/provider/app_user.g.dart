@@ -6,11 +6,11 @@ part of 'app_user.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$appUserHash() => r'f1c3de782c677c99f89fe717c30ab33dbeb4e85a';
+String _$appUserHash() => r'a7c081a94df2898b6e9064fc988b2a1f13bf9678';
 
 /// See also [appUser].
 @ProviderFor(appUser)
-final appUserProvider = AutoDisposeProvider<UserModel?>.internal(
+final appUserProvider = AutoDisposeProvider<AppUser?>.internal(
   appUser,
   name: r'appUserProvider',
   debugGetCreateSourceHash:
@@ -19,5 +19,5 @@ final appUserProvider = AutoDisposeProvider<UserModel?>.internal(
   allTransitiveDependencies: null,
 );
 
-typedef AppUserRef = AutoDisposeProviderRef<UserModel?>;
+typedef AppUserRef = AutoDisposeProviderRef<AppUser?>;
 // ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions

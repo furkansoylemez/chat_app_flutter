@@ -1,5 +1,7 @@
 import 'package:birsu/core/extension/widget_extensions.dart';
-import 'package:birsu/model/message_model.dart';
+import 'package:birsu/core/helper/other_helpers.dart';
+import 'package:birsu/model/message.dart';
+import 'package:birsu/widgets/custom_spacer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -10,7 +12,7 @@ class MessageBox extends StatelessWidget {
     required this.isFromCurrentUser,
   });
 
-  final MessageModel message;
+  final Message message;
   final bool isFromCurrentUser;
 
   @override
@@ -25,9 +27,30 @@ class MessageBox extends StatelessWidget {
               : Theme.of(context).colorScheme.secondary,
           borderRadius: getBorderRadius(),
         ),
-        child: Text(
-          message.content,
-          style: TextStyle(color: Theme.of(context).colorScheme.background),
+        child: Column(
+          crossAxisAlignment: isFromCurrentUser
+              ? CrossAxisAlignment.end
+              : CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              message.content,
+              style: TextStyle(
+                fontSize: 14.sp,
+                color: Theme.of(context).colorScheme.background,
+                fontWeight: FontWeight.w400,
+              ),
+            ),
+            CustomSpacer.column(3.h),
+            Text(
+              getMessageFormattedDate(message.timestamp),
+              style: TextStyle(
+                fontSize: 11.sp,
+                color: Theme.of(context).colorScheme.background,
+                fontWeight: FontWeight.w300,
+              ),
+            ),
+          ],
         ).paddingAll(16.r),
       ).paddingOnly(
         left: isFromCurrentUser ? 80.w : 10.w,

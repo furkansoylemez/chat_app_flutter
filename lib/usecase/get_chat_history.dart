@@ -1,6 +1,6 @@
 import 'package:birsu/core/app_constants.dart';
 import 'package:birsu/core/app_exception.dart';
-import 'package:birsu/model/message_model.dart';
+import 'package:birsu/model/message.dart';
 import 'package:birsu/provider/app_user.dart';
 import 'package:birsu/provider/firebase_firestore.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -25,7 +25,7 @@ class GetChatHistory {
   final FirebaseFirestore firebaseFirestore;
   final String appUserId;
 
-  Future<List<MessageModel>> action(String conversationId) async {
+  Future<List<Message>> action(String conversationId) async {
     try {
       final querySnapshot = await firebaseFirestore
           .collection(AppConstants.usersCollection)
@@ -35,7 +35,7 @@ class GetChatHistory {
           .collection(AppConstants.messagesCollection)
           .orderBy(AppConstants.timestampField, descending: false)
           .get();
-      return querySnapshot.docs.map(MessageModel.fromDocument).toList();
+      return querySnapshot.docs.map(Message.fromDocument).toList();
     } catch (error) {
       throw AppException(error.toString());
     }

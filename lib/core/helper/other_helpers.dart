@@ -1,23 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 
 bool isFormValid(GlobalKey<FormState> formKey) =>
     (formKey.currentState?.validate() ?? false) == true;
 
-void onAsyncSuccess(
-  AsyncValue<dynamic>? prevAsync,
-  AsyncValue<dynamic> nextAsync,
-  void Function() onSuccess,
-) {
-  if (prevAsync != nextAsync &&
-      nextAsync is AsyncData &&
-      nextAsync.asData?.value != null) {
-    onSuccess.call();
-  }
-}
-
-String getFormattedDate(int millisecondsSinceEpoch) {
+String getMessageFormattedDate(int millisecondsSinceEpoch) {
   final date = DateTime.fromMillisecondsSinceEpoch(millisecondsSinceEpoch);
   final now = DateTime.now();
   final difference = now.difference(date);

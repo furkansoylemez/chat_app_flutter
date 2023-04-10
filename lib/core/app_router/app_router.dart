@@ -5,7 +5,7 @@ import 'package:birsu/feature/login/view/login_page.dart';
 import 'package:birsu/feature/register/view/register_page.dart';
 import 'package:birsu/feature/splash/view/splash_page.dart';
 import 'package:birsu/feature/users/view/users_page.dart';
-import 'package:birsu/model/user_model.dart';
+import 'package:birsu/model/app_user.dart';
 import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 

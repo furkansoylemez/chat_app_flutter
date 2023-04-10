@@ -8,11 +8,11 @@ part 'conversation_user.g.dart';
 @riverpod
 Stream<DocumentSnapshot> conversationUser(
   ConversationUserRef ref,
-  String chatUserId,
+  String otherUserId,
 ) {
   final firestore = ref.watch(firebaseFirestoreProvider);
   return firestore
       .collection(AppConstants.usersCollection)
-      .doc(chatUserId)
+      .doc(otherUserId)
       .snapshots();
 }

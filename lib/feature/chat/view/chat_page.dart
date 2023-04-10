@@ -9,7 +9,7 @@ import 'package:birsu/feature/chat/logic/messages.dart';
 import 'package:birsu/feature/chat/logic/other_user_status.dart';
 import 'package:birsu/feature/chat/view/chat_text_field.dart';
 import 'package:birsu/feature/chat/view/message_box.dart';
-import 'package:birsu/model/user_model.dart';
+import 'package:birsu/model/app_user.dart';
 import 'package:birsu/provider/app_user.dart';
 import 'package:birsu/widgets/custom_spacer.dart';
 import 'package:birsu/widgets/empty_avatar.dart';
@@ -22,7 +22,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class ChatPage extends ConsumerStatefulWidget {
   const ChatPage(this.chatUser, {super.key});
 
-  final UserModel chatUser;
+  final AppUser chatUser;
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _ChatPageState();
@@ -72,7 +72,9 @@ class _ChatPageState extends ConsumerState<ChatPage> {
         scrolledUnderElevation: 0,
         title: ListTile(
           leading: EmptyAvatar(radius: 20.r),
-          title: Text(widget.chatUser.name),
+          title: Text(
+            widget.chatUser.name,
+          ),
           subtitle: Text(getUserStatusMessage(context)),
         ),
       ),

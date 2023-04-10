@@ -1,4 +1,4 @@
-import 'package:birsu/model/message_model.dart';
+import 'package:birsu/model/message.dart';
 import 'package:birsu/usecase/get_chat_history.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -7,7 +7,7 @@ part 'messages.g.dart';
 @riverpod
 class Messages extends _$Messages {
   @override
-  AsyncValue<List<MessageModel>> build() {
+  AsyncValue<List<Message>> build() {
     return const AsyncValue.data([]);
   }
 
@@ -18,7 +18,7 @@ class Messages extends _$Messages {
     });
   }
 
-  void addMessage(MessageModel message) {
+  void addMessage(Message message) {
     if (state.value != null) {
       state = AsyncData([...state.value!, message]);
     }

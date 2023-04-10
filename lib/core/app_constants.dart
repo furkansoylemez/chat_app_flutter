@@ -1,10 +1,13 @@
+import 'dart:ui';
+
 class AppConstants {
+  AppConstants._();
+
   /// App Constants
   static const Duration splashDuration = Duration(seconds: 3);
   static const int passwordMinLength = 8;
   static const int displayNameMinLength = 5;
-
-  /// App Constants
+  static const Locale defaultLocale = Locale('tr');
 
   /// Collection names
   static const String usersCollection = 'users';
@@ -12,18 +15,12 @@ class AppConstants {
   static const String messagesCollection = 'messages';
   static const String timestampField = 'timestamp';
 
-  /// Collection names
-
   /// Storage keys
   static const String isLightThemeKey = 'isLightTheme';
-
-  /// Storage keys
 
   /// Socket Constants
   static const String localSocketUrl = 'http://10.0.2.2:3000';
   static const String socketTransport = 'websocket';
-
-  /// Socket Constants
 
   /// Socket Events
   static const String newMessageEvent = 'newMessage';

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppTheme {
+  AppTheme._();
   static ThemeData get light {
     return ThemeData(
       useMaterial3: true,

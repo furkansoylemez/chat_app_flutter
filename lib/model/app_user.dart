@@ -1,15 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-class UserModel {
-  UserModel({
+class AppUser {
+  AppUser({
     required this.uid,
     required this.name,
     required this.email,
     required this.photoUrl,
   });
-  factory UserModel.fromDocument(DocumentSnapshot doc) {
-    return UserModel(
+  factory AppUser.fromDocument(DocumentSnapshot doc) {
+    return AppUser(
       uid: doc['uid'] as String,
       name: doc['name'] as String,
       email: doc['email'] as String,
@@ -17,8 +17,8 @@ class UserModel {
     );
   }
 
-  factory UserModel.fromFirebaseUser(User user) {
-    return UserModel(
+  factory AppUser.fromFirebaseUser(User user) {
+    return AppUser(
       uid: user.uid,
       name: user.displayName ?? '',
       email: user.email ?? '',

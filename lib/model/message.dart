@@ -1,15 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class MessageModel {
-  MessageModel({
+class Message {
+  Message({
     required this.senderId,
     required this.receiverId,
     required this.content,
     required this.timestamp,
   });
 
-  factory MessageModel.fromDocument(DocumentSnapshot doc) {
-    return MessageModel(
+  factory Message.fromDocument(DocumentSnapshot doc) {
+    return Message(
       senderId: doc['senderId'] as String,
       receiverId: doc['receiverId'] as String,
       content: doc['content'] as String,
@@ -17,8 +17,8 @@ class MessageModel {
     );
   }
 
-  factory MessageModel.fromMap(Map<String, dynamic> map) {
-    return MessageModel(
+  factory Message.fromMap(Map<String, dynamic> map) {
+    return Message(
       senderId: map['senderId'] as String,
       receiverId: map['receiverId'] as String,
       content: map['content'] as String,

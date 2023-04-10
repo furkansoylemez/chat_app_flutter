@@ -8,10 +8,10 @@ import 'package:birsu/feature/conversations/view/conversation_item.dart';
 import 'package:birsu/feature/drawer/view/drawer_page.dart';
 import 'package:birsu/model/conversation.dart';
 import 'package:birsu/provider/app_theme_mode.dart';
+import 'package:birsu/widgets/common_lottie.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lottie/lottie.dart';
 
 @RoutePage()
 class ConversationsPage extends ConsumerWidget {
@@ -19,6 +19,7 @@ class ConversationsPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final screenSize = MediaQuery.of(context).size;
     final conversations = ref.watch(conversationsProvider);
     final appThemeMode = ref.watch(appThemeModeProvider);
 
@@ -51,34 +52,32 @@ class ConversationsPage extends ConsumerWidget {
       body: Stack(
         children: [
           Container(
-            height: MediaQuery.of(context).size.height,
-            width: MediaQuery.of(context).size.width,
+            height: screenSize.height,
+            width: screenSize.width,
             foregroundDecoration: BoxDecoration(
               color: Theme.of(context).cardColor.withOpacity(0.4),
             ),
-            child: Lottie.asset(
+            child: CommonLottie(
               appThemeMode == ThemeMode.light
                   ? AppLotties.ltLightBackground
                   : AppLotties.ltDarkBackground,
-              frameRate: FrameRate.max,
-              repeat: true,
-              animate: true,
               fit: BoxFit.cover,
             ),
           ),
           SafeArea(
             child: conversations.when(
               data: (data) {
-                final docSnapshot = data.docs;
-                if (docSnapshot.isNotEmpty) {
+                final conversationList = data.docs;
+                if (conversationList.isNotEmpty) {
                   return Material(
                     color: Colors.transparent,
                     child: ListView.separated(
-                      itemCount: docSnapshot.length,
+                      itemCount: conversationList.length,
                       itemBuilder: (context, index) {
-                        final item = docSnapshot[index];
-                        final conversation = Conversation.fromFirestore(item);
-                        return ConversationItem(conversation: conversation);
+                        final item = conversationList[index];
+                        return ConversationItem(
+                          conversation: Conversation.fromDocument(item),
+                        );
                       },
                       separatorBuilder: (context, index) {
                         return const Divider()
@@ -93,23 +92,23 @@ class ConversationsPage extends ConsumerWidget {
                   ).center;
                 }
               },
-              loading: () => const Center(
-                child: CircularProgressIndicator(),
-              ),
-              error: (error, _) => Center(
-                child: Text(error.toString()),
-              ),
+              loading: () => const CircularProgressIndicator().center,
+              error: (error, _) => Text(error.toString()).center,
             ),
           )
         ],
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
-          context.router.push(const UsersRoute());
+          _navigateToUsersRoute(context);
         },
         label: Text(context.loc.newChat),
         icon: const Icon(Icons.message_outlined),
       ),
     );
+  }
+
+  void _navigateToUsersRoute(BuildContext context) {
+    context.router.push(const UsersRoute());
   }
 }

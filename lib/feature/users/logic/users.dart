@@ -1,4 +1,4 @@
-import 'package:birsu/model/user_model.dart';
+import 'package:birsu/model/app_user.dart';
 import 'package:birsu/provider/firebase_auth.dart';
 import 'package:birsu/usecase/get_users.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -8,11 +8,11 @@ part 'users.g.dart';
 @riverpod
 class Users extends _$Users {
   @override
-  FutureOr<List<UserModel>> build() async {
+  FutureOr<List<AppUser>> build() async {
     return _fetchUsers();
   }
 
-  Future<List<UserModel>> _fetchUsers() async {
+  Future<List<AppUser>> _fetchUsers() async {
     final getUsers = ref.watch(getUsersProvider);
     final users = await getUsers.action();
     final usersWithoutSignedInUser = users
