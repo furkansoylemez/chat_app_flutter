@@ -6,12 +6,12 @@ part of 'sign_in.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$signInHash() => r'7b51bebd5fa671ba9535a564d8de28e207a19a47';
+String _$signInHash() => r'3343eb5e4b9b6d3f4c3f7e384a60da7c1bb0feb1';
 
-/// See also [SignIn].
-@ProviderFor(SignIn)
-final signInProvider = AutoDisposeNotifierProvider<SignIn, void>.internal(
-  SignIn.new,
+/// See also [signIn].
+@ProviderFor(signIn)
+final signInProvider = AutoDisposeProvider<SignIn>.internal(
+  signIn,
   name: r'signInProvider',
   debugGetCreateSourceHash:
       const bool.fromEnvironment('dart.vm.product') ? null : _$signInHash,
@@ -19,5 +19,5 @@ final signInProvider = AutoDisposeNotifierProvider<SignIn, void>.internal(
   allTransitiveDependencies: null,
 );
 
-typedef _$SignIn = AutoDisposeNotifier<void>;
+typedef SignInRef = AutoDisposeProviderRef<SignIn>;
 // ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions

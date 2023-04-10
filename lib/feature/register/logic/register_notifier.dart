@@ -38,7 +38,7 @@ class RegisterNotifier extends _$RegisterNotifier {
     state = state.copyWith(
       registerStatus: await AsyncValue.guard(() {
         return ref
-            .read(createUserProvider.notifier)
+            .read(createUserProvider)
             .action(state.displayName, state.email, state.password);
       }),
     );

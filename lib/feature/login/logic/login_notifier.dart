@@ -27,9 +27,7 @@ class LoginNotifier extends _$LoginNotifier {
     state = state.copyWith(loginStatus: const AsyncValue.loading());
     state = state.copyWith(
       loginStatus: await AsyncValue.guard(() {
-        return ref
-            .read(signInProvider.notifier)
-            .action(state.email, state.password);
+        return ref.read(signInProvider).action(state.email, state.password);
       }),
     );
   }

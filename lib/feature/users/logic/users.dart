@@ -13,7 +13,7 @@ class Users extends _$Users {
   }
 
   Future<List<UserModel>> _fetchUsers() async {
-    final getUsers = ref.watch(getUsersProvider.notifier);
+    final getUsers = ref.watch(getUsersProvider);
     final users = await getUsers.action();
     final usersWithoutSignedInUser = users
         .where(

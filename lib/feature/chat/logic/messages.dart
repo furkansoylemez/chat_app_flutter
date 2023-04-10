@@ -14,7 +14,7 @@ class Messages extends _$Messages {
   Future<void> fetchMessageHistory(String conversationId) async {
     state = const AsyncLoading();
     state = await AsyncValue.guard(() {
-      return ref.read(getChatHistoryProvider.notifier).action(conversationId);
+      return ref.read(getChatHistoryProvider).action(conversationId);
     });
   }
 

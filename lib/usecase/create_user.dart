@@ -1,30 +1,46 @@
 import 'package:birsu/core/app_constants.dart';
 import 'package:birsu/core/app_exception.dart';
+import 'package:birsu/core/extension/context_extensions.dart';
 import 'package:birsu/provider/firebase_auth.dart';
 import 'package:birsu/provider/firebase_firestore.dart';
 import 'package:birsu/provider/localizations_provider.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'create_user.g.dart';
 
 @riverpod
-class CreateUser extends _$CreateUser {
-  @override
-  void build() {}
+CreateUser createUser(CreateUserRef ref) {
+  final firebaseAuth = ref.watch(firebaseAuthProvider);
+  final firebaseFirestore = ref.watch(firebaseFirestoreProvider);
+  final loc = ref.watch(localizationsProvider);
+  return CreateUser(
+    firebaseAuth: firebaseAuth,
+    firebaseFirestore: firebaseFirestore,
+    loc: loc,
+  );
+}
+
+class CreateUser {
+  CreateUser({
+    required this.firebaseAuth,
+    required this.firebaseFirestore,
+    required this.loc,
+  });
+
+  final FirebaseAuth firebaseAuth;
+  final FirebaseFirestore firebaseFirestore;
+  final AppLocalizations loc;
 
   Future<bool> action(
     String displayName,
     String emailAddress,
     String password,
   ) async {
-    final firebaseAuth = ref.read(firebaseAuthProvider);
-
-    final firebaseFirestore = ref.read(firebaseFirestoreProvider);
     final usersCollection =
         firebaseFirestore.collection(AppConstants.usersCollection);
 
-    final loc = ref.read(localizationsProvider);
     try {
       final userCredential = await firebaseAuth.createUserWithEmailAndPassword(
         email: emailAddress,
