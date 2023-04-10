@@ -7,6 +7,8 @@ import 'package:birsu/core/helper/other_helpers.dart';
 import 'package:birsu/core/resource/resources.dart';
 import 'package:birsu/core/validators.dart';
 import 'package:birsu/feature/register/logic/register_notifier.dart';
+import 'package:birsu/feature/register/logic/register_state.dart';
+import 'package:birsu/widgets/common_lottie.dart';
 import 'package:birsu/widgets/custom_spacer.dart';
 import 'package:birsu/widgets/form_fields/display_name_form_field.dart';
 import 'package:birsu/widgets/form_fields/email_form_field.dart';
@@ -14,7 +16,6 @@ import 'package:birsu/widgets/form_fields/password_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lottie/lottie.dart';
 
 @RoutePage()
 class RegisterPage extends ConsumerWidget {
@@ -29,7 +30,12 @@ class RegisterPage extends ConsumerWidget {
     final password =
         ref.watch(registerNotifierProvider.select((state) => state.password));
 
-    _listenRegisterNotifier(ref, context);
+    final dialogHelper = ref.watch(dialogHelperProvider);
+
+    ref.listen(registerNotifierProvider, (prev, next) {
+      _showDialogOnRegisterError(prev, next, dialogHelper, context);
+      _navigateOnRegisterSuccess(prev, next, context);
+    });
 
     return Scaffold(
       appBar: AppBar(
@@ -42,44 +48,29 @@ class RegisterPage extends ConsumerWidget {
           key: _formKey,
           child: Column(
             children: [
-              Lottie.asset(
-                AppLotties.ltMediatingRabbit,
-                frameRate: FrameRate.max,
-                repeat: true,
-                animate: true,
-              ),
+              const CommonLottie(AppLotties.ltMediatingRabbit),
               DisplayNameFormField(
-                onChanged: (displayName) {
-                  ref
-                      .read(registerNotifierProvider.notifier)
-                      .displayNameChanged(displayName);
-                },
+                onChanged: ref
+                    .read(registerNotifierProvider.notifier)
+                    .displayNameChanged,
               ),
               CustomSpacer.column(16.h),
               EmailFormField(
-                onChanged: (email) {
-                  ref
-                      .read(registerNotifierProvider.notifier)
-                      .emailChanged(email);
-                },
+                onChanged:
+                    ref.read(registerNotifierProvider.notifier).emailChanged,
               ),
               CustomSpacer.column(16.h),
               PasswordFormField(
                 labelText: context.loc.password,
-                onChanged: (password) {
-                  ref
-                      .read(registerNotifierProvider.notifier)
-                      .passwordChanged(password);
-                },
+                onChanged:
+                    ref.read(registerNotifierProvider.notifier).passwordChanged,
               ),
               CustomSpacer.column(16.h),
               PasswordFormField(
                 labelText: context.loc.passwordAgain,
-                onChanged: (confirmPassword) {
-                  ref
-                      .read(registerNotifierProvider.notifier)
-                      .confirmPasswordChanged(confirmPassword);
-                },
+                onChanged: ref
+                    .read(registerNotifierProvider.notifier)
+                    .confirmPasswordChanged,
                 validators: [
                   PasswordMatchValidator(
                     password,
@@ -97,11 +88,7 @@ class RegisterPage extends ConsumerWidget {
                       width: double.maxFinite,
                       child: FilledButton(
                         onPressed: () {
-                          if (isFormValid(_formKey)) {
-                            ref
-                                .read(registerNotifierProvider.notifier)
-                                .register();
-                          }
+                          _onRegisterButtonPressed(ref);
                         },
                         child: Text(
                           context.loc.register,
@@ -125,24 +112,41 @@ class RegisterPage extends ConsumerWidget {
     );
   }
 
-  void _listenRegisterNotifier(
-    WidgetRef ref,
+  void _onRegisterButtonPressed(WidgetRef ref) {
+    if (isFormValid(_formKey)) {
+      ref.read(registerNotifierProvider.notifier).register();
+    }
+  }
+
+  void _showDialogOnRegisterError(
+    RegisterState? prev,
+    RegisterState next,
+    DialogHelper dialogHelper,
     BuildContext context,
   ) {
-    final dialogHelper = ref.watch(dialogHelperProvider);
-    ref.listen(registerNotifierProvider, (prev, next) {
-      dialogHelper.onAsyncErrorShowDialog(
-        context,
-        prev?.registerStatus,
-        next.registerStatus,
-      );
+    if (prev?.registerStatus != next.registerStatus &&
+        next.registerStatus is AsyncError &&
+        next.registerStatus.hasError) {
+      dialogHelper.showErrorDialog(context, next.registerStatus.error);
+    }
+  }
 
-      onAsyncSuccess(prev?.registerStatus, next.registerStatus, () {
-        context.router.pushAndPopUntil(
-          const ConversationsRoute(),
-          predicate: (_) => false,
-        );
-      });
-    });
+  void _navigateOnRegisterSuccess(
+    RegisterState? prev,
+    RegisterState next,
+    BuildContext context,
+  ) {
+    if (prev?.registerStatus != next.registerStatus &&
+        next.registerStatus is AsyncData &&
+        (next.registerStatus.value ?? false)) {
+      _navigateToConversationsPage(context);
+    }
+  }
+
+  void _navigateToConversationsPage(BuildContext context) {
+    context.router.pushAndPopUntil(
+      const ConversationsRoute(),
+      predicate: (_) => false,
+    );
   }
 }

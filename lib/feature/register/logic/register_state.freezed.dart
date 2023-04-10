@@ -20,7 +20,7 @@ mixin _$RegisterState {
   String get email => throw _privateConstructorUsedError;
   String get password => throw _privateConstructorUsedError;
   String get confirmPassword => throw _privateConstructorUsedError;
-  AsyncValue<bool?> get registerStatus => throw _privateConstructorUsedError;
+  AsyncValue<bool> get registerStatus => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $RegisterStateCopyWith<RegisterState> get copyWith =>
@@ -38,7 +38,7 @@ abstract class $RegisterStateCopyWith<$Res> {
       String email,
       String password,
       String confirmPassword,
-      AsyncValue<bool?> registerStatus});
+      AsyncValue<bool> registerStatus});
 }
 
 /// @nodoc
@@ -80,7 +80,7 @@ class _$RegisterStateCopyWithImpl<$Res, $Val extends RegisterState>
       registerStatus: null == registerStatus
           ? _value.registerStatus
           : registerStatus // ignore: cast_nullable_to_non_nullable
-              as AsyncValue<bool?>,
+              as AsyncValue<bool>,
     ) as $Val);
   }
 }
@@ -98,7 +98,7 @@ abstract class _$$_RegisterStateCopyWith<$Res>
       String email,
       String password,
       String confirmPassword,
-      AsyncValue<bool?> registerStatus});
+      AsyncValue<bool> registerStatus});
 }
 
 /// @nodoc
@@ -138,7 +138,7 @@ class __$$_RegisterStateCopyWithImpl<$Res>
       registerStatus: null == registerStatus
           ? _value.registerStatus
           : registerStatus // ignore: cast_nullable_to_non_nullable
-              as AsyncValue<bool?>,
+              as AsyncValue<bool>,
     ));
   }
 }
@@ -162,7 +162,7 @@ class _$_RegisterState implements _RegisterState {
   @override
   final String confirmPassword;
   @override
-  final AsyncValue<bool?> registerStatus;
+  final AsyncValue<bool> registerStatus;
 
   @override
   String toString() {
@@ -202,7 +202,7 @@ abstract class _RegisterState implements RegisterState {
       required final String email,
       required final String password,
       required final String confirmPassword,
-      required final AsyncValue<bool?> registerStatus}) = _$_RegisterState;
+      required final AsyncValue<bool> registerStatus}) = _$_RegisterState;
 
   @override
   String get displayName;
@@ -213,7 +213,7 @@ abstract class _RegisterState implements RegisterState {
   @override
   String get confirmPassword;
   @override
-  AsyncValue<bool?> get registerStatus;
+  AsyncValue<bool> get registerStatus;
   @override
   @JsonKey(ignore: true)
   _$$_RegisterStateCopyWith<_$_RegisterState> get copyWith =>

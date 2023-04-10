@@ -10,6 +10,6 @@ class RegisterState with _$RegisterState {
     required String email,
     required String password,
     required String confirmPassword,
-    required AsyncValue<bool?> registerStatus,
+    required AsyncValue<bool> registerStatus,
   }) = _RegisterState;
 }

@@ -75,7 +75,7 @@ class CreateUser {
             errorMessage = loc.invalidEmailError;
             break;
           default:
-            errorMessage = error.toString();
+            errorMessage = error.message.toString();
         }
       } else {
         errorMessage = error.toString();

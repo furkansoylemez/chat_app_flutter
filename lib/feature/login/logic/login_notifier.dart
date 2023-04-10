@@ -11,7 +11,7 @@ class LoginNotifier extends _$LoginNotifier {
     return const LoginState(
       email: '',
       password: '',
-      loginStatus: AsyncValue.data(null),
+      loginStatus: AsyncValue.data(false),
     );
   }
 
@@ -26,8 +26,9 @@ class LoginNotifier extends _$LoginNotifier {
   Future<void> login() async {
     state = state.copyWith(loginStatus: const AsyncValue.loading());
     state = state.copyWith(
-      loginStatus: await AsyncValue.guard(() {
-        return ref.read(signInProvider).action(state.email, state.password);
+      loginStatus: await AsyncValue.guard(() async {
+        await ref.read(signInProvider).action(state.email, state.password);
+        return true;
       }),
     );
   }

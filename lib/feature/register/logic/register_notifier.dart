@@ -13,7 +13,7 @@ class RegisterNotifier extends _$RegisterNotifier {
       email: '',
       password: '',
       confirmPassword: '',
-      registerStatus: AsyncValue.data(null),
+      registerStatus: AsyncValue.data(false),
     );
   }
 
@@ -36,10 +36,11 @@ class RegisterNotifier extends _$RegisterNotifier {
   Future<void> register() async {
     state = state.copyWith(registerStatus: const AsyncValue.loading());
     state = state.copyWith(
-      registerStatus: await AsyncValue.guard(() {
-        return ref
+      registerStatus: await AsyncValue.guard(() async {
+        await ref
             .read(createUserProvider)
             .action(state.displayName, state.email, state.password);
+        return true;
       }),
     );
   }

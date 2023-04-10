@@ -20,9 +20,9 @@ class SignIn {
   final FirebaseAuth firebaseAuth;
   final AppLocalizations loc;
 
-  Future<UserCredential> action(String emailAddress, String password) async {
+  Future<void> action(String emailAddress, String password) async {
     try {
-      return await firebaseAuth.signInWithEmailAndPassword(
+      await firebaseAuth.signInWithEmailAndPassword(
         email: emailAddress,
         password: password,
       );
@@ -43,7 +43,7 @@ class SignIn {
             errorMessage = loc.wrongPasswordError;
             break;
           default:
-            errorMessage = error.toString();
+            errorMessage = error.message.toString();
         }
       } else {
         errorMessage = error.toString();

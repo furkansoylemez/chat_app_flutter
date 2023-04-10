@@ -5,6 +5,7 @@ import 'package:birsu/core/extension/widget_extensions.dart';
 import 'package:birsu/core/helper/dialog_helper.dart';
 import 'package:birsu/core/helper/other_helpers.dart';
 import 'package:birsu/feature/login/logic/login_notifier.dart';
+import 'package:birsu/feature/login/logic/login_state.dart';
 import 'package:birsu/widgets/custom_spacer.dart';
 import 'package:birsu/widgets/form_fields/email_form_field.dart';
 import 'package:birsu/widgets/form_fields/password_form_field.dart';
@@ -25,14 +26,8 @@ class LoginPage extends ConsumerWidget {
     );
 
     ref.listen(loginNotifierProvider, (prev, next) {
-      dialogHelper.onAsyncErrorShowDialog(
-        context,
-        prev?.loginStatus,
-        next.loginStatus,
-      );
-      onAsyncSuccess(prev?.loginStatus, next.loginStatus, () {
-        context.router.replace(const ConversationsRoute());
-      });
+      _showDialogOnLoginError(prev, next, dialogHelper, context);
+      _navigateOnLoginSuccess(prev, next, context);
     });
     return Scaffold(
       extendBodyBehindAppBar: true,
@@ -54,18 +49,14 @@ class LoginPage extends ConsumerWidget {
               ),
               CustomSpacer.column(20.h),
               EmailFormField(
-                onChanged: (email) {
-                  ref.read(loginNotifierProvider.notifier).emailChanged(email);
-                },
+                onChanged:
+                    ref.read(loginNotifierProvider.notifier).emailChanged,
               ),
               CustomSpacer.column(16.h),
               PasswordFormField(
                 labelText: context.loc.password,
-                onChanged: (password) {
-                  ref
-                      .read(loginNotifierProvider.notifier)
-                      .passwordChanged(password);
-                },
+                onChanged:
+                    ref.read(loginNotifierProvider.notifier).passwordChanged,
               ),
               CustomSpacer.column(20.h),
               Builder(
@@ -120,5 +111,34 @@ class LoginPage extends ConsumerWidget {
         ).paddingSymmetric(horizontal: 10.w),
       ).center,
     );
+  }
+
+  void _showDialogOnLoginError(
+    LoginState? prev,
+    LoginState next,
+    DialogHelper dialogHelper,
+    BuildContext context,
+  ) {
+    if (prev?.loginStatus != next.loginStatus &&
+        next.loginStatus is AsyncError &&
+        next.loginStatus.hasError) {
+      dialogHelper.showErrorDialog(context, next.loginStatus.error);
+    }
+  }
+
+  void _navigateOnLoginSuccess(
+    LoginState? prev,
+    LoginState next,
+    BuildContext context,
+  ) {
+    if (prev?.loginStatus != next.loginStatus &&
+        next.loginStatus is AsyncData &&
+        (next.loginStatus.value ?? false)) {
+      _navigateToConversationsPage(context);
+    }
+  }
+
+  void _navigateToConversationsPage(BuildContext context) {
+    context.router.replace(const ConversationsRoute());
   }
 }

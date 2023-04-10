@@ -6,7 +6,7 @@ part of 'login_notifier.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$loginNotifierHash() => r'b13debb9279fd829fecc30ad3ee030bdde4d282b';
+String _$loginNotifierHash() => r'61202906dbef7d6e83f6c1061c5630144f649011';
 
 /// See also [LoginNotifier].
 @ProviderFor(LoginNotifier)

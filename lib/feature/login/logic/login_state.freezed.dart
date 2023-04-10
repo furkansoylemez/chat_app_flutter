@@ -18,8 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$LoginState {
   String get email => throw _privateConstructorUsedError;
   String get password => throw _privateConstructorUsedError;
-  AsyncValue<UserCredential?> get loginStatus =>
-      throw _privateConstructorUsedError;
+  AsyncValue<bool> get loginStatus => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $LoginStateCopyWith<LoginState> get copyWith =>
@@ -32,8 +31,7 @@ abstract class $LoginStateCopyWith<$Res> {
           LoginState value, $Res Function(LoginState) then) =
       _$LoginStateCopyWithImpl<$Res, LoginState>;
   @useResult
-  $Res call(
-      {String email, String password, AsyncValue<UserCredential?> loginStatus});
+  $Res call({String email, String password, AsyncValue<bool> loginStatus});
 }
 
 /// @nodoc
@@ -65,7 +63,7 @@ class _$LoginStateCopyWithImpl<$Res, $Val extends LoginState>
       loginStatus: null == loginStatus
           ? _value.loginStatus
           : loginStatus // ignore: cast_nullable_to_non_nullable
-              as AsyncValue<UserCredential?>,
+              as AsyncValue<bool>,
     ) as $Val);
   }
 }
@@ -78,8 +76,7 @@ abstract class _$$_LoginStateCopyWith<$Res>
       __$$_LoginStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {String email, String password, AsyncValue<UserCredential?> loginStatus});
+  $Res call({String email, String password, AsyncValue<bool> loginStatus});
 }
 
 /// @nodoc
@@ -109,7 +106,7 @@ class __$$_LoginStateCopyWithImpl<$Res>
       loginStatus: null == loginStatus
           ? _value.loginStatus
           : loginStatus // ignore: cast_nullable_to_non_nullable
-              as AsyncValue<UserCredential?>,
+              as AsyncValue<bool>,
     ));
   }
 }
@@ -125,7 +122,7 @@ class _$_LoginState implements _LoginState {
   @override
   final String password;
   @override
-  final AsyncValue<UserCredential?> loginStatus;
+  final AsyncValue<bool> loginStatus;
 
   @override
   String toString() {
@@ -158,14 +155,14 @@ abstract class _LoginState implements LoginState {
   const factory _LoginState(
       {required final String email,
       required final String password,
-      required final AsyncValue<UserCredential?> loginStatus}) = _$_LoginState;
+      required final AsyncValue<bool> loginStatus}) = _$_LoginState;
 
   @override
   String get email;
   @override
   String get password;
   @override
-  AsyncValue<UserCredential?> get loginStatus;
+  AsyncValue<bool> get loginStatus;
   @override
   @JsonKey(ignore: true)
   _$$_LoginStateCopyWith<_$_LoginState> get copyWith =>
