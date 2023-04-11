@@ -62,11 +62,13 @@ class ChatSocket extends _$ChatSocket {
   void setSocketUserStatusEvents(String otherUserId) {
     state
       ..on(AppConstants.newMessageEvent, (messageData) {
-        if (messageData['senderId'] == otherUserId &&
-            messageData['receiverId'] == ref.read(appUserProvider)?.uid) {
-          ref.read(messagesProvider.notifier).addMessage(
-                Message.fromMap(messageData as Map<String, dynamic>),
-              );
+        if (messageData is Map<String, dynamic>) {
+          if (messageData['senderId'] == otherUserId &&
+              messageData['receiverId'] == ref.read(appUserProvider)?.uid) {
+            ref.read(messagesProvider.notifier).addMessage(
+                  Message.fromMap(messageData),
+                );
+          }
         }
       })
       ..on(AppConstants.userOnlineEvent, (userId) {

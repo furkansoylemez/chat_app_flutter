@@ -64,7 +64,7 @@ class _ChatPageState extends ConsumerState<ChatPage> {
 
   @override
   Widget build(BuildContext context) {
-    final socket = ref.watch(chatSocketProvider);
+    ref.watch(chatSocketProvider);
     final messages = ref.watch(messagesProvider);
 
     return Scaffold(
@@ -75,7 +75,7 @@ class _ChatPageState extends ConsumerState<ChatPage> {
           title: Text(
             widget.chatUser.name,
           ),
-          subtitle: Text(getUserStatusMessage(context)),
+          subtitle: Text(_getUserStatusMessage(context)),
         ),
       ),
       body: Column(
@@ -129,14 +129,14 @@ class _ChatPageState extends ConsumerState<ChatPage> {
               children: [
                 Expanded(
                   child: ChatTextField(
-                    onChanged: _onChanged,
+                    onChanged: _updateTypingStatus,
                     messageController: _messageController,
                   ).paddingOnly(left: 8.w, top: 4.h, bottom: 4.h),
                 ),
                 IconButton(
                   color: Theme.of(context).colorScheme.background,
                   icon: const Icon(Icons.send),
-                  onPressed: _sendMessage,
+                  onPressed: _sendMessageAndClearField,
                 ),
               ],
             ),
@@ -146,7 +146,7 @@ class _ChatPageState extends ConsumerState<ChatPage> {
     );
   }
 
-  void _onChanged(String value) {
+  void _updateTypingStatus(String value) {
     if (value.isNotEmpty) {
       _debounceTimer?.cancel(); // Cancel any previous timer
       _debounceTimer = Timer(const Duration(seconds: 1), () {
@@ -161,7 +161,7 @@ class _ChatPageState extends ConsumerState<ChatPage> {
     }
   }
 
-  String getUserStatusMessage(BuildContext context) {
+  String _getUserStatusMessage(BuildContext context) {
     final otherUserStatus = ref.watch(otherUserStatusProvider);
     switch (otherUserStatus) {
       case OtherUserStatusType.offline:
@@ -175,7 +175,7 @@ class _ChatPageState extends ConsumerState<ChatPage> {
     }
   }
 
-  void _sendMessage() {
+  void _sendMessageAndClearField() {
     final trimmedMessage = _messageController.text.trim();
     if (trimmedMessage.isNotEmpty) {
       ref.read(chatSocketProvider.notifier).sendMessage(
