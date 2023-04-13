@@ -49,7 +49,7 @@ class _SplashPageState extends ConsumerState<SplashPage> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          CommonLottie(AppLotties.ltCouple),
+          const CommonLottie(AppLotties.ltCouple),
           CustomSpacer.column(20.h),
           const LinearProgressIndicator().paddingSymmetric(horizontal: 70.w)
         ],

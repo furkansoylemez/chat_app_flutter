@@ -48,7 +48,7 @@ class RegisterPage extends ConsumerWidget {
           key: _formKey,
           child: Column(
             children: [
-              CommonLottie(AppLotties.ltMediatingRabbit),
+              const CommonLottie(AppLotties.ltMediatingRabbit),
               DisplayNameFormField(
                 onChanged: ref
                     .read(registerNotifierProvider.notifier)

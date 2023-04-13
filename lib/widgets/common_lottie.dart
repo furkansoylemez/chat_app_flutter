@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
 class CommonLottie extends StatelessWidget {
-  CommonLottie(
+  const CommonLottie(
     this.lottiePath, {
     super.key,
     this.fit,
   });
   final String lottiePath;
-  BoxFit? fit;
+  final BoxFit? fit;
   @override
   Widget build(BuildContext context) {
     return Lottie.asset(
