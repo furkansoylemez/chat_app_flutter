@@ -41,6 +41,7 @@
   "typing": "Yazıyor...",
   "userDisabledError": "Kullanıcı engellendi.",
   "userNotFoundError": "Kullanıcı bulunamadı.",
+  "users": "Kullanıcılar",
   "weakPasswordError": "Girdiğiniz şifre çok zayıf.",
   "writeMessage": "Mesaj yaz",
   "wrongPasswordError": "Yanlış şifre girdiniz.",

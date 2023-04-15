@@ -93,6 +93,14 @@ class ChatSocket extends _$ChatSocket {
       });
   }
 
+  void sendOnlineEvent() {
+    state.emit(AppConstants.userOnlineEvent, ref.read(appUserProvider)?.uid);
+  }
+
+  void sendOfflineEvent() {
+    state.emit(AppConstants.userOfflineEvent, ref.read(appUserProvider)?.uid);
+  }
+
   void sendTypingEvent() {
     state.emit(AppConstants.userTypingEvent, ref.read(appUserProvider)?.uid);
   }

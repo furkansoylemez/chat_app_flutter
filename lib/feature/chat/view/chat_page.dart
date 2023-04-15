@@ -5,7 +5,6 @@ import 'package:birsu/core/extension/context_extensions.dart';
 import 'package:birsu/core/extension/widget_extensions.dart';
 import 'package:birsu/core/helper/other_helpers.dart';
 import 'package:birsu/core/resource/resources.dart';
-import 'package:birsu/feature/chat/logic/chat_socket.dart';
 import 'package:birsu/feature/chat/logic/messages.dart';
 import 'package:birsu/feature/chat/logic/other_user_status.dart';
 import 'package:birsu/feature/chat/view/chat_text_field.dart';
@@ -13,6 +12,7 @@ import 'package:birsu/feature/chat/view/message_box.dart';
 import 'package:birsu/model/app_user.dart';
 import 'package:birsu/provider/app_theme_mode.dart';
 import 'package:birsu/provider/app_user.dart';
+import 'package:birsu/provider/chat_socket.dart';
 import 'package:birsu/widgets/common_lottie.dart';
 import 'package:birsu/widgets/custom_spacer.dart';
 import 'package:birsu/widgets/empty_avatar.dart';
@@ -68,7 +68,7 @@ class _ChatPageState extends ConsumerState<ChatPage> {
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
-    ref.watch(chatSocketProvider);
+
     final appThemeMode = ref.watch(appThemeModeProvider);
     final messages = ref.watch(messagesProvider);
 

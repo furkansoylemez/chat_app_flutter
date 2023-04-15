@@ -8,18 +8,58 @@ import 'package:birsu/feature/conversations/view/conversation_item.dart';
 import 'package:birsu/feature/drawer/view/drawer_page.dart';
 import 'package:birsu/model/conversation.dart';
 import 'package:birsu/provider/app_theme_mode.dart';
+import 'package:birsu/provider/chat_socket.dart';
 import 'package:birsu/widgets/common_lottie.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 @RoutePage()
-class ConversationsPage extends ConsumerWidget {
+class ConversationsPage extends ConsumerStatefulWidget {
   const ConversationsPage({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<ConsumerStatefulWidget> createState() =>
+      _ConversationsPageState();
+}
+
+class _ConversationsPageState extends ConsumerState<ConversationsPage>
+    with WidgetsBindingObserver {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    super.didChangeAppLifecycleState(state);
+    if (state == AppLifecycleState.inactive ||
+        state == AppLifecycleState.paused) {
+      _handleAppGoesToBackground();
+    } else if (state == AppLifecycleState.resumed) {
+      _handleAppComesToForeground();
+    }
+  }
+
+  void _handleAppGoesToBackground() {
+    ref.read(chatSocketProvider.notifier).sendOfflineEvent();
+  }
+
+  void _handleAppComesToForeground() {
+    ref.read(chatSocketProvider.notifier).sendOnlineEvent();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
+    ref.watch(chatSocketProvider);
     final conversations = ref.watch(conversationsProvider);
     final appThemeMode = ref.watch(appThemeModeProvider);
 
