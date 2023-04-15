@@ -6,7 +6,7 @@ part of 'chat_socket.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$chatSocketHash() => r'4121f1504f193af288fedf80378916e2599424ae';
+String _$chatSocketHash() => r'212c64cb643703d0f40017d2196d184095b3af32';
 
 /// See also [ChatSocket].
 @ProviderFor(ChatSocket)

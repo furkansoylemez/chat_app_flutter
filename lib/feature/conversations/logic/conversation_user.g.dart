@@ -6,7 +6,7 @@ part of 'conversation_user.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$conversationUserHash() => r'4c36b1ae15aaf05ebe88780407dedec829f44da3';
+String _$conversationUserHash() => r'844cb38e6ec7bbf6e3d6498b2cd17cc3fb2a53e5';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -44,10 +44,10 @@ class ConversationUserFamily
 
   /// See also [conversationUser].
   ConversationUserProvider call(
-    String chatUserId,
+    String otherUserId,
   ) {
     return ConversationUserProvider(
-      chatUserId,
+      otherUserId,
     );
   }
 
@@ -56,7 +56,7 @@ class ConversationUserFamily
     covariant ConversationUserProvider provider,
   ) {
     return call(
-      provider.chatUserId,
+      provider.otherUserId,
     );
   }
 
@@ -80,11 +80,11 @@ class ConversationUserProvider
     extends AutoDisposeStreamProvider<DocumentSnapshot<Object?>> {
   /// See also [conversationUser].
   ConversationUserProvider(
-    this.chatUserId,
+    this.otherUserId,
   ) : super.internal(
           (ref) => conversationUser(
             ref,
-            chatUserId,
+            otherUserId,
           ),
           from: conversationUserProvider,
           name: r'conversationUserProvider',
@@ -97,17 +97,18 @@ class ConversationUserProvider
               ConversationUserFamily._allTransitiveDependencies,
         );
 
-  final String chatUserId;
+  final String otherUserId;
 
   @override
   bool operator ==(Object other) {
-    return other is ConversationUserProvider && other.chatUserId == chatUserId;
+    return other is ConversationUserProvider &&
+        other.otherUserId == otherUserId;
   }
 
   @override
   int get hashCode {
     var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, chatUserId.hashCode);
+    hash = _SystemHash.combine(hash, otherUserId.hashCode);
 
     return _SystemHash.finish(hash);
   }

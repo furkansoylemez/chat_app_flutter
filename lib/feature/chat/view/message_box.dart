@@ -20,38 +20,37 @@ class MessageBox extends StatelessWidget {
     return Align(
       alignment:
           isFromCurrentUser ? Alignment.centerRight : Alignment.centerLeft,
-      child: DecoratedBox(
-        decoration: BoxDecoration(
-          color: isFromCurrentUser
-              ? Theme.of(context).colorScheme.tertiary
-              : Theme.of(context).colorScheme.secondary,
-          borderRadius: getBorderRadius(),
-        ),
-        child: Column(
-          crossAxisAlignment: isFromCurrentUser
-              ? CrossAxisAlignment.end
-              : CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: isFromCurrentUser
+            ? CrossAxisAlignment.end
+            : CrossAxisAlignment.start,
+        children: [
+          DecoratedBox(
+            decoration: BoxDecoration(
+              color: isFromCurrentUser
+                  ? Theme.of(context).colorScheme.onBackground
+                  : Theme.of(context).colorScheme.onBackground,
+              borderRadius: getBorderRadius(),
+            ),
+            child: Text(
               message.content,
               style: TextStyle(
                 fontSize: 14.sp,
                 color: Theme.of(context).colorScheme.background,
                 fontWeight: FontWeight.w400,
               ),
+            ).paddingAll(16.r),
+          ),
+          CustomSpacer.column(3.h),
+          Text(
+            getMessageFormattedDate(message.timestamp),
+            style: TextStyle(
+              fontSize: 11.sp,
+              fontWeight: FontWeight.w300,
             ),
-            CustomSpacer.column(3.h),
-            Text(
-              getMessageFormattedDate(message.timestamp),
-              style: TextStyle(
-                fontSize: 11.sp,
-                color: Theme.of(context).colorScheme.background,
-                fontWeight: FontWeight.w300,
-              ),
-            ),
-          ],
-        ).paddingAll(16.r),
+          ),
+        ],
       ).paddingOnly(
         left: isFromCurrentUser ? 80.w : 10.w,
         right: isFromCurrentUser ? 10.w : 80.w,
