@@ -9,8 +9,8 @@ class DrawerLogout extends _$DrawerLogout {
   Future<void> build() async {}
 
   Future<void> logout() async {
-    final signOut = ref.read(signOutProvider);
     state = const AsyncLoading();
-    state = await AsyncValue.guard(signOut.action);
+
+    state = await AsyncValue.guard(ref.read(signOutProvider).action);
   }
 }

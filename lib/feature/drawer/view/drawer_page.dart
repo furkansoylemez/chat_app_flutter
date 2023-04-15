@@ -15,6 +15,7 @@ class DrawerPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final appUser = ref.watch(appUserProvider);
+    final logoutStatus = ref.watch(drawerLogoutProvider);
     return Drawer(
       child: Column(
         children: [
@@ -36,11 +37,18 @@ class DrawerPage extends ConsumerWidget {
                   ],
                 ),
               ),
-              DrawerListTile(
-                title: context.loc.logout,
-                iconData: Icons.logout,
-                onTap: () {
-                  ref.read(drawerLogoutProvider.notifier).logout();
+              Builder(
+                builder: (context) {
+                  if (logoutStatus is AsyncLoading) {
+                    return const Center(child: CircularProgressIndicator());
+                  }
+                  return DrawerListTile(
+                    title: context.loc.logout,
+                    iconData: Icons.logout,
+                    onTap: () {
+                      ref.read(drawerLogoutProvider.notifier).logout();
+                    },
+                  );
                 },
               ),
             ],
