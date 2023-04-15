@@ -3,7 +3,6 @@ import 'package:birsu/feature/chat/logic/messages.dart';
 import 'package:birsu/feature/chat/logic/other_user_status.dart';
 import 'package:birsu/model/message.dart';
 import 'package:birsu/provider/app_user.dart';
-import 'package:flutter/foundation.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:socket_io_client/socket_io_client.dart';
 
@@ -20,12 +19,6 @@ class ChatSocket extends _$ChatSocket {
           .disableAutoConnect()
           .build(),
     )
-      ..onConnect((_) {
-        debugPrint('Socket connected.');
-      })
-      ..onConnectError((data) {
-        debugPrint('Socket connect error: $data');
-      })
       ..connect()
       ..emit(AppConstants.userOnlineEvent, ref.read(appUserProvider)?.uid);
 
@@ -61,6 +54,7 @@ class ChatSocket extends _$ChatSocket {
 
   void setSocketUserStatusEvents(String otherUserId) {
     state
+      ..clearListeners()
       ..on(AppConstants.newMessageEvent, (messageData) {
         if (messageData is Map<String, dynamic>) {
           if (messageData['senderId'] == otherUserId &&
