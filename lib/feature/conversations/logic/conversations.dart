@@ -11,10 +11,10 @@ Stream<QuerySnapshot> conversations(
   ConversationsRef ref,
 ) {
   final firestore = ref.watch(firebaseFirestoreProvider);
-  final appUser = ref.watch(appUserProvider);
+  final appUserId = ref.watch(appUserProvider.select((state) => state?.uid));
   return firestore
       .collection(AppConstants.usersCollection)
-      .doc(appUser?.uid)
+      .doc(appUserId)
       .collection(AppConstants.conversationsCollection)
       .snapshots();
 }

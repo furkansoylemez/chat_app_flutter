@@ -5,7 +5,7 @@ import 'package:birsu/core/helper/other_helpers.dart';
 import 'package:birsu/feature/conversations/logic/conversation_user.dart';
 import 'package:birsu/model/app_user.dart';
 import 'package:birsu/model/conversation.dart';
-import 'package:birsu/widgets/empty_avatar.dart';
+import 'package:birsu/widgets/user_avatar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -27,7 +27,7 @@ class ConversationItem extends ConsumerWidget {
         final otherUser = AppUser.fromDocument(data);
         return ListTile(
           contentPadding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 5.h),
-          leading: EmptyAvatar(radius: 25.r),
+          leading: UserAvatar(imageUrl: otherUser.photoUrl, radius: 25.r),
           title: Text(otherUser.name),
           subtitle: Text(
             conversation.lastMessage.senderId == conversation.otherUserId

@@ -2,6 +2,7 @@
   "@@locale": "tr",
   "chats": "Sohbetler",
   "conversationsEmptyInfo": "Burası oldukça boş görünüyor",
+  "cropPicture": "Fotoğrafı Kırp",
   "displayName": "Görünür Ad",
   "displayNameMinLengthError": "Görünür ad en az {displayNameMinLength} karakterden oluşmalıdır",
   "@displayNameMinLengthError": {

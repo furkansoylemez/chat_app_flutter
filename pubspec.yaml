@@ -8,9 +8,11 @@ environment:
 
 dependencies:
   auto_route: ^6.1.0
+  cached_network_image: ^3.2.3
   cloud_firestore: ^4.5.1
   firebase_auth: ^4.4.1
   firebase_core: ^2.9.0
+  firebase_storage: ^11.1.0
   flutter:
     sdk: flutter
   flutter_localizations:
@@ -20,6 +22,8 @@ dependencies:
   form_field_validator: ^1.1.0
   freezed_annotation: ^2.2.0
   get_storage: ^2.1.1
+  image_cropper: ^3.0.2
+  image_picker: ^0.8.7+3
   intl: ^0.17.0
   lottie: ^2.3.2
   riverpod_annotation: ^2.0.4

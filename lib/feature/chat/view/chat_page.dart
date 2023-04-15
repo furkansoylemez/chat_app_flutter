@@ -15,8 +15,8 @@ import 'package:birsu/provider/app_user.dart';
 import 'package:birsu/provider/chat_socket.dart';
 import 'package:birsu/widgets/common_lottie.dart';
 import 'package:birsu/widgets/custom_spacer.dart';
-import 'package:birsu/widgets/empty_avatar.dart';
 import 'package:birsu/widgets/error_view.dart';
+import 'package:birsu/widgets/user_avatar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -92,7 +92,12 @@ class _ChatPageState extends ConsumerState<ChatPage> {
             )
           ],
         ),
-        actions: [EmptyAvatar(radius: 22.r).paddingOnly(right: 12.w)],
+        actions: [
+          UserAvatar(
+            imageUrl: widget.chatUser.photoUrl,
+            radius: 22.r,
+          ).paddingOnly(right: 12.w)
+        ],
       ),
       body: Stack(
         children: [
