@@ -24,10 +24,6 @@ class ChatSocket extends _$ChatSocket {
 
     ref.onDispose(() {
       socket
-        ..emit(
-          AppConstants.userOfflineEvent,
-          ref.read(appUserProvider)?.uid,
-        )
         ..disconnect()
         ..dispose();
     });
