@@ -9,6 +9,7 @@ import 'package:birsu/feature/drawer/view/drawer_page.dart';
 import 'package:birsu/model/conversation.dart';
 import 'package:birsu/provider/app_theme_mode.dart';
 import 'package:birsu/provider/chat_socket.dart';
+import 'package:birsu/usecase/update_fcm_token.dart';
 import 'package:birsu/widgets/common_lottie.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -28,6 +29,7 @@ class _ConversationsPageState extends ConsumerState<ConversationsPage>
   @override
   void initState() {
     super.initState();
+    ref.read(updateFcmTokenProvider).action();
     WidgetsBinding.instance.addObserver(this);
   }
 
