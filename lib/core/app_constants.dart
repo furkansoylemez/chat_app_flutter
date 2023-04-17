@@ -19,7 +19,9 @@ class AppConstants {
   static const String isLightThemeKey = 'isLightTheme';
 
   /// Socket Constants
-  static const String localSocketUrl = 'http://10.0.2.2:3000';
+  //static const String localSocketUrl = 'http://10.0.2.2:3000';
+  static const String localSocketUrl =
+      'https://melodious-awake-watercress.glitch.me/';
   static const String socketTransport = 'websocket';
 
   /// Socket Events
